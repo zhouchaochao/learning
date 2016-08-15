@@ -11,7 +11,7 @@
 
     <appender name="File" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="encoding" value="utf-8" />
-        <param name="File" value="cc.log" />
+        <param name="File" value="readFile.log" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d %t %p [%c:%M] - %m%n" />
         </layout>
