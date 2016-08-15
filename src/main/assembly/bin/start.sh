@@ -13,7 +13,7 @@ fi
 
 # exec 
 LOGFILE="nohup.out"
-nohup java -classpath ../conf/:../lib/* com.jd.hello.Main $SHDIR > $LOGFILE &
+nohup java -classpath ../conf/:../lib/* com.jd.hello.MainClass $SHDIR > $LOGFILE &
 
 # wirte pid to file
 if [ $? -eq 0 ] 
