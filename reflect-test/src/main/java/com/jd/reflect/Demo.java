@@ -8,6 +8,7 @@ import java.lang.reflect.*;
  * Title: Demo
  * Description: Demo
  * 参考：http://www.cnblogs.com/rollenholt/archive/2011/09/02/2163758.html
+ *       http://www.cnblogs.com/gulvzhe/archive/2012/01/27/2330001.html
  * Company: <a href=www.jd.com>京东</a>
  * Date:  2016/8/15
  *
@@ -32,7 +33,10 @@ public class Demo {
         testArray();
         testArrayIncrement();
 
-
+        testPrintClass("com.jd.reflect.entity.Person");
+        getDeclaredField();
+        testCopy();
+        testCopy2();
     }
 
     public static void testClassName() {
@@ -344,6 +348,7 @@ public class Demo {
         String[] atr = {"a", "b", "c"};
         String[] str1 = (String[]) arrayInc(atr, 8);
         print(str1);
+        System.out.println("");
     }
 
     /**
@@ -369,6 +374,134 @@ public class Demo {
         for (int i = 0; i < Array.getLength(obj); i++) {
             System.out.print(Array.get(obj, i) + " ");
         }
+    }
+
+    public static void testPrintClass(String className) {
+
+        try {
+            //获取整个类
+            Class c = Class.forName(className);
+            //获取所有的属性
+            Field[] fs = c.getDeclaredFields();
+
+            //定义可变长的字符串，用来存储属性
+            StringBuffer sb = new StringBuffer();
+            //通过追加的方法，将每个属性拼接到此字符串中
+            //最外边的public定义
+            sb.append(Modifier.toString(c.getModifiers()) + " class " + c.getSimpleName() + "{\n");
+            //里边的每一个属性
+            for (Field field : fs) {
+                sb.append("\t");//空格
+                sb.append(Modifier.toString(field.getModifiers()) + " ");//获得属性的修饰符，例如public，static等等
+                sb.append(field.getType().getSimpleName() + " ");//属性的类型的名字
+                sb.append(field.getName() + ";\n");//属性的名字+回车
+            }
+
+            sb.append("}");
+
+            System.out.println(sb);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //获取特定的属性
+    public static void getDeclaredField() {
+
+        try {
+            //获取类
+            Class c = Class.forName("com.jd.reflect.entity.Person");
+            //获取name属性
+            Field idF = c.getDeclaredField("name");
+            //实例化这个类赋给o
+            Object o = c.newInstance();
+            //打破封装
+            idF.setAccessible(true); //使用反射机制可以打破封装性，导致了java对象的属性不安全。
+            //给o对象的id属性赋值"110"
+            idF.set(o, "cc"); //set
+            //get
+            System.out.println(idF.get(o));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void testCopy() {
+        try {
+
+            Person person1 = new Person("cc", 18);
+            Person person2 = new Person();
+
+            copyBean(person1, person2);
+
+            System.out.println("源对象：" + person1);
+            System.out.println("拷贝对象：" + person2);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 拷贝对象信息。
+     *
+     * @param from 拷贝源对象
+     * @param dest 拷贝目标对象
+     * @throws Exception 例外
+     */
+    private static void copyBean(Object from, Object dest) throws Exception {
+        // 取得拷贝源对象的Class对象
+        Class<?> fromClass = from.getClass();
+        // 取得拷贝源对象的属性列表
+        Field[] fromFields = fromClass.getDeclaredFields();
+        // 取得拷贝目标对象的Class对象
+        Class<?> destClass = dest.getClass();
+        Field destField = null;
+        for (Field fromField : fromFields) {
+            // 取得拷贝源对象的属性名字
+            String name = fromField.getName();
+            // 取得拷贝目标对象的相同名称的属性
+            destField = destClass.getDeclaredField(name);
+            // 设置属性的可访问性
+            fromField.setAccessible(true);
+            destField.setAccessible(true);
+            // 将拷贝源对象的属性的值赋给拷贝目标对象相应的属性
+            destField.set(dest, fromField.get(from));
+        }
+    }
+
+
+    public static void testCopy2() {
+        try {
+
+            Person person1 = new Person("ccc", 19);
+            Person person2 = (Person)copyBean(person1);
+
+            System.out.println("源对象：" + person1);
+            System.out.println("拷贝对象：" + person2);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Object copyBean(Object from) throws Exception {
+        // 取得拷贝源对象的Class对象
+        Class<?> fromClass = from.getClass();
+        // 取得拷贝源对象的属性列表
+        Field[] fromFields = fromClass.getDeclaredFields();
+        // 取得拷贝目标对象的Class对象
+        Object ints = fromClass.newInstance();
+        for (Field fromField : fromFields) {
+            // 设置属性的可访问性
+            fromField.setAccessible(true);
+            // 将拷贝源对象的属性的值赋给拷贝目标对象相应的属性
+            fromField.set(ints, fromField.get(from));
+        }
+        return ints;
     }
 
 }
