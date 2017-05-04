@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+
+    <!--指定输出源 CONSOLE，输出到控制台-->
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %t %5p [%c:%M:%L] - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--指定输出源dailyRollingFileAppender 每天一个日志。当天日志Log4jUse.log, 昨天日志Log4jUse.log.2016-08-01 -->
+    <appender name="dailyRollingFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="encoding" value="utf-8" />
+        <param name="File" value="/export/Logs/learning/Log4jUse/Log4jUse.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %t %p [%c:%M] - %m%n" />
+        </layout>
+    </appender>
+
+    <!--指定输出源rollingFileAppender  最多备份五个文件，每个最大1M，当前日志Log4jUse.log，当大小达到1MB时，更名为Log4jUse.log.1,新建Log4jUse.log。最老的日志Log4jUse.log.5-->
+    <appender name="rollingFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="encoding" value="utf-8" />
+        <param name="MaxFileSize" value="1MB" />
+        <param name="MaxBackupIndex" value="5" />
+        <param name="File" value="/export/Logs/learning/Log4jUse/Log4jUse.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %t %p [%c:%M] - %m%n" />
+        </layout>
+    </appender>
+
+
+    <appender name="appender1" class="org.apache.log4j.RollingFileAppender">
+        <param name="encoding" value="utf-8" />
+        <param name="MaxFileSize" value="1MB" />
+        <param name="MaxBackupIndex" value="0" />
+        <param name="File" value="/export/Logs/learning/Log4jUse/appender1.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %t %p [%c:%M] - %m%n" />
+        </layout>
+    </appender>
+    <appender name="appender2" class="org.apache.log4j.RollingFileAppender">
+        <param name="encoding" value="utf-8" />
+        <param name="MaxFileSize" value="1MB" />
+        <param name="MaxBackupIndex" value="0" />
+        <param name="File" value="/export/Logs/learning/Log4jUse/appender2.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %t %p [%c:%M] - %m%n" />
+        </layout>
+    </appender>
+
+    <!--这里的name既可以指定包，也可以精确到类名 表示这个路径的类使用这里配置的日志输出源进行输出-->
+    <logger name="com.jd.log4jUse.file1.Chao" additivity="false"><!-- additivity=false：表示Logger不会在父Logger的appender里输出，默认为true-->
+        <level value="INFO" />
+        <appender-ref ref="appender1" />
+    </logger>
+    <logger name="com.jd.log4jUse.file2" additivity="false"><!-- additivity=false：表示Logger不会在父Logger的appender里输出，默认为true-->
+        <level value="INFO" />
+        <appender-ref ref="appender2" />
+    </logger>
+
+    <!--指定日志级别INFO，输出到CONSOLE 和 dailyRollingFileAppender两个输出源-->
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" /><!--如果不指定控制台，控制台就没有输出-->
+        <!--<appender-ref ref="dailyRollingFileAppender" />-->
+        <appender-ref ref="rollingFileAppender" />
+	</root>
+
+
+</log4j:configuration>

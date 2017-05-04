@@ -10,6 +10,13 @@
     <modules>
         <module>reflect-test</module>
         <module>read-file</module>
+        <module>test</module>
+        <module>dynamic-proxy</module>
+        <module>cache-test</module>
+        <module>Log4jUse</module>
+        <module>csvAndExcel</module>
+        <module>netty-test</module>
+        <module>util</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -17,7 +24,8 @@
 
     <properties>
         <!-- Log libs -->
-        <slf4j_version>1.6.5</slf4j_version>
+        <slf4j_version>1.7.2</slf4j_version>
+        <log4j_version>1.2.17</log4j_version>
     </properties>
 
     <dependencies>
