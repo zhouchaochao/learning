@@ -14,7 +14,9 @@ public class RealSubject implements Subject {
 
     @Override
     public String say(String name, int age) {
-        return name + "  " + age;
+        String returnStr = name + "  " + age;
+        System.out.println(returnStr);
+        return returnStr;
     }
 
 }

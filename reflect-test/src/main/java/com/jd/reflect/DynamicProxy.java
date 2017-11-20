@@ -2,6 +2,8 @@ package com.jd.reflect;
 
 import com.jd.reflect.iface.Subject;
 
+import java.lang.reflect.Method;
+
 /**
  * Title: DynamicProxy
  * Description: DynamicProxy
@@ -20,15 +22,25 @@ public class DynamicProxy {
      */
 
     public static void main(String[] args) {
+        try{
+            DynamicProxy dynamicProxy = new DynamicProxy();
+            System.out.println("类加载器  " + dynamicProxy.getClass().getClassLoader().getClass().getName());//sun.misc.Launcher$AppClassLoader
 
-        DynamicProxy dynamicProxy = new DynamicProxy();
-        System.out.println("类加载器  " + dynamicProxy.getClass().getClassLoader().getClass().getName());//sun.misc.Launcher$AppClassLoader
+            MyInvocationHandler demo = new MyInvocationHandler();
+            //Subject sub = (Subject) demo.bind(new RealSubject());//马蛋，我都能new出实例了，还要你的代理什么用??
+            Subject sub = (Subject) demo.bind(Class.forName("com.jd.reflect.RealSubject").newInstance());//通过反射创建实例
 
+            String info = sub.say("Rollen", 20);
+            System.out.println(info);
 
-        MyInvocationHandler demo = new MyInvocationHandler();
-        Subject sub = (Subject) demo.bind(new RealSubject());//马蛋，我都能new出实例了，还要你的代理什么用??
-        String info = sub.say("Rollen", 20);
-        System.out.println(info);
+            String methodName = "say";
+            Method method = Class.forName("com.jd.reflect.iface.Subject").getMethod(methodName,String.class, int.class);
+            String info2 = (String) method.invoke(sub,"alice", 18);
+            System.out.println(info2);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
     }
 

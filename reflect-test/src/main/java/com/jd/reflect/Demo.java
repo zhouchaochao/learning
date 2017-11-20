@@ -169,7 +169,7 @@ public class Demo {
         Constructor<?> cons[] = personClass.getConstructors();
         for (int i = 0; i < cons.length; i++) {
             Class<?> p[] = cons[i].getParameterTypes();
-            System.out.print("构造方法：  ");
+            System.out.print("testGetParameterTypes 构造方法：  ");
             int mo = cons[i].getModifiers();
             System.out.print(Modifier.toString(mo) + " ");//获取修饰符
             System.out.print(cons[i].getName());
@@ -258,6 +258,7 @@ public class Demo {
 
     //通过反射调用方法
     public static void testInvoke() {
+        System.out.println("===============testInvoke========================");
         Class<?> demo = null;
         try {
             demo = Class.forName("com.jd.reflect.entity.Person");
@@ -284,6 +285,7 @@ public class Demo {
 
     //设置属性，调用get,set方法
     public static void testGetSet() {
+        System.out.println("===============testGetSet========================");
         Class<?> demo = null;
         Object obj = null;
         try {
@@ -314,6 +316,7 @@ public class Demo {
 
     //通过field 反射操作属性
     public static void testFieldSet() {
+        System.out.println("===============testFieldSet========================");
         try {
             Class<?> demo = Class.forName("com.jd.reflect.entity.Person");
             Object obj = demo.newInstance();
@@ -330,6 +333,8 @@ public class Demo {
 
     //通过反射取得并修改数组的信息 TODO 这是反射？
     public static void testArray() {
+        System.out.println("===============testArray========================");
+
         int[] temp = {1, 2, 3, 4, 5};
         Class<?> demo = temp.getClass().getComponentType();
         System.out.println("数组类型： " + demo.getName());
@@ -341,6 +346,7 @@ public class Demo {
 
     //通过反射修改数组大小
     public static void testArrayIncrement() {
+        System.out.println("===============testArrayIncrement========================");
         int[] temp = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         int[] newTemp = (int[]) arrayInc(temp, 15);
         print(newTemp);
@@ -355,6 +361,7 @@ public class Demo {
      * 修改数组大小
      */
     public static Object arrayInc(Object obj, int len) {
+        System.out.println("修改数组大小");
         Class<?> arr = obj.getClass().getComponentType();
         Object newArr = Array.newInstance(arr, len);//创建一个新数组
         int co = Array.getLength(obj);
@@ -377,6 +384,7 @@ public class Demo {
     }
 
     public static void testPrintClass(String className) {
+        System.out.println("===============testPrintClass========================");
 
         try {
             //获取整个类
@@ -408,6 +416,7 @@ public class Demo {
 
     //获取特定的属性
     public static void getDeclaredField() {
+        System.out.println("===============getDeclaredField========================");
 
         try {
             //获取类
@@ -429,6 +438,8 @@ public class Demo {
 
 
     public static void testCopy() {
+        System.out.println("===============testCopy========================");
+
         try {
 
             Person person1 = new Person("cc", 18);
@@ -453,6 +464,7 @@ public class Demo {
      * @throws Exception 例外
      */
     private static void copyBean(Object from, Object dest) throws Exception {
+        System.out.println("copyBean");
         // 取得拷贝源对象的Class对象
         Class<?> fromClass = from.getClass();
         // 取得拷贝源对象的属性列表
@@ -476,6 +488,7 @@ public class Demo {
 
     public static void testCopy2() {
         try {
+            System.out.println("===============testCopy2========================");
 
             Person person1 = new Person("ccc", 19);
             Person person2 = (Person)copyBean(person1);
@@ -489,6 +502,7 @@ public class Demo {
     }
 
     private static Object copyBean(Object from) throws Exception {
+        System.out.println("===============copyBean========================");
         // 取得拷贝源对象的Class对象
         Class<?> fromClass = from.getClass();
         // 取得拷贝源对象的属性列表

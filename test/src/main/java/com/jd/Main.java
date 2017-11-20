@@ -28,6 +28,21 @@ public class Main {
 
     public static void main(String[] agrs) {
         try {
+
+            printObj(new Person());
+
+            //1.7 version       "transport_address": "inet[/172.28.141.15:9340]"
+            //2.1 5.2 version   "transport_address": "172.28.140.46:30100"
+            String ipPort = "inet[/172.28.141.15:9340]";
+            //ipPort = "172.28.140.46:30100";
+            if (ipPort.startsWith("i")) {
+                ipPort = ipPort.substring(6);//去掉前面的 inet[/
+                ipPort = ipPort.substring(0, ipPort.length() - 1);//去掉最后的]
+            }
+            System.out.println("ipPort:" + ipPort);
+
+            if (true) return;
+
             //logger.info("hello cc");
             String[] arra = "".split(" ");
             int abc = arra.length;
@@ -225,6 +240,10 @@ public class Main {
             }
         }
         return null;
+    }
+
+    private static void printObj(Object object){
+        logger.info(object.toString());
     }
 
 }

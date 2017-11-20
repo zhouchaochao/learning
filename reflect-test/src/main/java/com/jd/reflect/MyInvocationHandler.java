@@ -24,7 +24,9 @@ public class MyInvocationHandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {
+        System.out.println("invoke before");
         Object temp = method.invoke(this.obj, args);
+        System.out.println("invoke after");
         return temp;
     }
 }
