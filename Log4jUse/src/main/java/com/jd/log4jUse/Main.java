@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 /**
  * Title: com.jd.log4jUse.Main
  * Description: com.jd.log4jUse.Main   参考：http://www.cnblogs.com/ITtangtang/p/3926665.html
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/12/2
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class Main {
 

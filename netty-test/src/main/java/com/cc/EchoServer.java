@@ -14,10 +14,10 @@ import org.slf4j.LoggerFactory;
 /**
  * Title: EchoServer
  * Description: EchoServer cmd with: telnet localhost 8080
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/3/4
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class EchoServer {
 

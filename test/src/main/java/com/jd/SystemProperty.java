@@ -11,10 +11,10 @@ import java.util.Properties;
 /**
  * Title: SystemProperty
  * Description: SystemProperty 获取系统变量
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/3/16
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class SystemProperty {
 

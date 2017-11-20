@@ -6,10 +6,10 @@ import org.slf4j.LoggerFactory;
 /**
  * Title: IpToIntMain
  * Description: IpToIntMain  将一个ip转换成用int表示
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/1/10
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class IpToIntMain {
 

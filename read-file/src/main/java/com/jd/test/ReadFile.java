@@ -8,12 +8,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Title: com.jd.com.jd.test.ReadFile
- * Description: com.jd.com.jd.test.ReadFile
- * Company: <a href=www.jd.com>京东</a>
+ * Title:
+ * Description:
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/8/11
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class ReadFile {
 

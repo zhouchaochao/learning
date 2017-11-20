@@ -11,10 +11,10 @@ import java.security.ProtectionDomain;
 /**
  * Title: FileUtils 文件操作工具类
  * Description: FileUtils
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/3
  * @author <a>zhanggeng</a>
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class FileUtils {
 

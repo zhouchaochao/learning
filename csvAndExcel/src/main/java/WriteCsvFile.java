@@ -11,10 +11,10 @@ import java.util.Date;
  * Title: WriteCsvFile
  * Description: WriteCsvFile 逗号分隔值（Comma-Separated Values，CSV，有时也称为字符分隔值，
  * 因为分隔字符也可以不是逗号），其文件以纯文本形式存储表格数据（数字和文本）。
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/2/24
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class WriteCsvFile {
 

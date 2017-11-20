@@ -9,10 +9,10 @@ import java.util.Scanner;
  *              path:../java/com/jd/MainArguments.java
  *              in java path:1.javac com/jd/MainArguments.java
  *                           2.java com.jd.MainArguments a b c
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/4
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class MainArguments {
 

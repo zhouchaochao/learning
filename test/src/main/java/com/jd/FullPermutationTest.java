@@ -3,10 +3,10 @@ package com.jd;
 /**
  * Title: FullPermutationTest
  * Description: FullPermutationTest 全排列,假设输入的字符串中字符不重复
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/1/20
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class FullPermutationTest {
 

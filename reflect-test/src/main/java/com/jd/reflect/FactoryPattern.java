@@ -5,10 +5,10 @@ import com.jd.reflect.iface.Fruit;
 /**
  * Title: FactoryPattern 通过反射的工厂模式
  * Description: FactoryPattern
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/8/17
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class FactoryPattern {
 

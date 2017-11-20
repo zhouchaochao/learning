@@ -12,10 +12,10 @@ import java.util.Iterator;
 /**
  * Title: ReadFileMethod 读文件方法
  * Description: ReadFileMethod
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/3
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class ReadFileMethod {
 

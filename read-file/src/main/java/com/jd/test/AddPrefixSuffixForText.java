@@ -8,10 +8,10 @@ import java.io.*;
 /**
  * Title: AddPrefixSuffixForText 按行读取文件，为文件每行前面，后面添加额外的字符串,替换字符等
  * Description: AddPrefixSuffixForText
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/3
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class AddPrefixSuffixForText {
 

@@ -8,10 +8,10 @@ import javassist.CtNewMethod;
 /**
  * Title: MyGenerator  http://blog.csdn.net/sinat_18882775/article/details/51061946
  * Description: MyGenerator http://www.blogjava.net/hello-yun/archive/2014/09/28/418365.html
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/8/17
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class MyGenerator {
 

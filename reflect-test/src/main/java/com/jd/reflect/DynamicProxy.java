@@ -7,10 +7,10 @@ import java.lang.reflect.Method;
 /**
  * Title: DynamicProxy
  * Description: DynamicProxy
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/8/15
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class DynamicProxy {
 

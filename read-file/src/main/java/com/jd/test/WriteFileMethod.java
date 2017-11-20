@@ -11,10 +11,10 @@ import java.io.*;
  *         参考：http://www.cnblogs.com/lovebread/archive/2009/11/23/1609122.html
  *
  *
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/3
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class WriteFileMethod {
 

@@ -11,10 +11,10 @@ import org.slf4j.LoggerFactory;
 /**
  * Title: TimeServerHandler
  * Description: TimeServerHandler
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/3/13
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 

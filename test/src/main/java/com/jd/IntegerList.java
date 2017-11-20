@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Title: IntegerList
  * Description: IntegerList
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/9/9
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class IntegerList {
 

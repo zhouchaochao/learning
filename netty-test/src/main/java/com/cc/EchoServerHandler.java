@@ -11,10 +11,10 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 /**
  * Title: com.cc.EchoServerHandler
  * Description: com.cc.EchoServerHandler
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/3/4
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class EchoServerHandler extends ChannelInboundHandlerAdapter { // (1)
     @Override

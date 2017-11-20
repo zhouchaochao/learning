@@ -15,10 +15,10 @@ import java.util.regex.Pattern;
 /**
  * Title: Main
  * Description: Main
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/8/17
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class Main {
 
@@ -102,7 +102,7 @@ public class Main {
             }
 
             key = "品牌";
-            value = "三星 东芝 三洋 佳能 京东 abc";
+            value = "三星 东芝 三洋 佳能 CC abc";
             if(results.containsKey(key)){
                 results.put(key,results.get(key)+ " " + value);
             }

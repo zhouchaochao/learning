@@ -9,10 +9,10 @@ import java.lang.reflect.*;
  * Description: Demo
  * 参考：http://www.cnblogs.com/rollenholt/archive/2011/09/02/2163758.html
  *       http://www.cnblogs.com/gulvzhe/archive/2012/01/27/2330001.html
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/8/15
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class Demo {
 

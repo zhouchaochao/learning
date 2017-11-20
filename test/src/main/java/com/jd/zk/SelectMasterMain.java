@@ -19,10 +19,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * Title: SelectMasterMain
  * Description: SelectMasterMain
- * Company: <a href=www.jd.com>京东</a>
+ * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/8/19
  *
- * @author <a href=mailto:zhouzhichao@jd.com>chaochao</a>
+ * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
  */
 public class SelectMasterMain {
 
