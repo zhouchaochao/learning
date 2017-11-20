@@ -14,7 +14,7 @@ import java.util.Properties;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/3/16
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class SystemProperty {
 
@@ -77,7 +77,7 @@ public class SystemProperty {
 
 
     /** result in Windows
-    用户名:    zhouzhichao
+    用户名:    zhouchaochao
     计算机名:    ZB-B6F1J32
     计算机域名:    360BUYAD
     本地ip地址:    10.12.165.31
@@ -99,7 +99,7 @@ public class SystemProperty {
     Java运行时环境规范供应商：    null
     Java运行时环境规范名称：    Java Platform API Specification
     Java的类格式版本号：    52.0
-    Java的类路径：    C:\Program Files\Java\jdk1.8.0_60\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\rt.jar;C:\Users\zhouzhichao\IdeaProjects\learning\test\target\classes;C:\Users\zhouzhichao\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\zhouzhichao\.m2\repository\org\slf4j\slf4j-api\1.7.2\slf4j-api-1.7.2.jar;C:\Users\zhouzhichao\.m2\repository\org\slf4j\slf4j-log4j12\1.7.2\slf4j-log4j12-1.7.2.jar;C:\Users\zhouzhichao\.m2\repository\com\jd\saf-zookeeper-common\2.1.0-SNAPSHOT\saf-zookeeper-common-2.1.0-SNAPSHOT.jar;C:\Users\zhouzhichao\.m2\repository\org\apache\zookeeper\zookeeper\3.4.6\zookeeper-3.4.6.jar;C:\Users\zhouzhichao\.m2\repository\com\google\guava\guava\17.0\guava-17.0.jar;C:\Users\zhouzhichao\.m2\repository\com\alibaba\fastjson\1.2.8\fastjson-1.2.8.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 15.0.2\lib\idea_rt.jar
+    Java的类路径：    C:\Program Files\Java\jdk1.8.0_60\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\rt.jar;C:\Users\zhouchaochao\IdeaProjects\learning\test\target\classes;C:\Users\zhouchaochao\.m2\repository\log4j\log4j\1.2.17\log4j-1.2.17.jar;C:\Users\zhouchaochao\.m2\repository\org\slf4j\slf4j-api\1.7.2\slf4j-api-1.7.2.jar;C:\Users\zhouchaochao\.m2\repository\org\slf4j\slf4j-log4j12\1.7.2\slf4j-log4j12-1.7.2.jar;C:\Users\zhouchaochao\.m2\repository\com\jd\saf-zookeeper-common\2.1.0-SNAPSHOT\saf-zookeeper-common-2.1.0-SNAPSHOT.jar;C:\Users\zhouchaochao\.m2\repository\org\apache\zookeeper\zookeeper\3.4.6\zookeeper-3.4.6.jar;C:\Users\zhouchaochao\.m2\repository\com\google\guava\guava\17.0\guava-17.0.jar;C:\Users\zhouchaochao\.m2\repository\com\alibaba\fastjson\1.2.8\fastjson-1.2.8.jar;C:\Program Files (x86)\JetBrains\IntelliJ IDEA 15.0.2\lib\idea_rt.jar
     加载库时搜索的路径列表：    C:\Program Files\Java\jdk1.8.0_60\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\dlllib;C:\Program Files (x86)\Common Files\NetSarang;C:\Program Files\Java\jdk1.8.0_60\bin;C:\Program Files\Java\jdk1.8.0_60\jre\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\mysql5.6.24\bin;.
     默认的临时文件路径：    C:\Users\ZHOUZH~1\AppData\Local\Temp\
     一个或多个扩展目录的路径：    C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext;C:\Windows\Sun\Java\lib\ext
@@ -110,9 +110,9 @@ public class SystemProperty {
     路径分隔符：    ;
     行分隔符：
 
-    用户的账户名称：    zhouzhichao
-    用户的主目录：    C:\Users\zhouzhichao
-    用户的当前工作目录：    C:\Users\zhouzhichao\IdeaProjects\learning
+    用户的账户名称：    zhouchaochao
+    用户的主目录：    C:\Users\zhouchaochao
+    用户的当前工作目录：    C:\Users\zhouchaochao\IdeaProjects\learning
 
      */
 

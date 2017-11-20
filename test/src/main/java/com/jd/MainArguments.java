@@ -12,7 +12,7 @@ import java.util.Scanner;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/4
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class MainArguments {
 

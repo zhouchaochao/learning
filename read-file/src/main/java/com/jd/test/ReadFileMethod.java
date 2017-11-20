@@ -15,17 +15,17 @@ import java.util.Iterator;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/3
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class ReadFileMethod {
 
     private static Logger logger = LoggerFactory.getLogger(ReadFileMethod.class);
 
     public static void main(String[] args) {
-        String fileName = "C:/Users/zhouzhichao/text1.txt";
+        String fileName = "C:/Users/zhouchaochao/text1.txt";
 
 
-        File file = new File("C:/Users/zhouzhichao/createPathFile1.txt");
+        File file = new File("C:/Users/zhouchaochao/createPathFile1.txt");
         if (file.isFile() && file.exists()) { //判断文件是否存在
             file.delete();
             logger.info("delete file:" + file);
@@ -38,7 +38,7 @@ public class ReadFileMethod {
             }
         }
 
-        File dir = new File("C:/Users/zhouzhichao/abc/def/createDir");
+        File dir = new File("C:/Users/zhouchaochao/abc/def/createDir");
         if (dir.isDirectory()) {
             logger.info("isDirectory");
         } else {
@@ -54,7 +54,7 @@ public class ReadFileMethod {
         //readFileByRandomAccess(fileName);
         readTxtFile(fileName);
 
-        createPathFile("C:/Users/zhouzhichao/1/2/createPathFile1.txt");
+        createPathFile("C:/Users/zhouchaochao/1/2/createPathFile1.txt");
     }
 
     /**

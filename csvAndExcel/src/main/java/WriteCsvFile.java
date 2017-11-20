@@ -14,7 +14,7 @@ import java.util.Date;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/2/24
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class WriteCsvFile {
 
@@ -22,7 +22,7 @@ public class WriteCsvFile {
 
     public static void main(String[] args){
 
-        String fileName = "C:/Users/zhouzhichao/csvFile.csv";
+        String fileName = "C:/Users/zhouchaochao/csvFile.csv";
         //writeCsvFile(fileName);
 
         String[][] arrs = new String[3][3];

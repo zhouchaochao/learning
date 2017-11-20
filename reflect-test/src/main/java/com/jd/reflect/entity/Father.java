@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2017/6/12
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class Father<T1, T2> {
 

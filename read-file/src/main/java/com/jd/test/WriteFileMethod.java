@@ -14,14 +14,14 @@ import java.io.*;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/3
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class WriteFileMethod {
 
     private static Logger logger = LoggerFactory.getLogger(WriteFileMethod.class);
 
     public static void main(String[] args){
-        String fileName = "C:/Users/zhouzhichao/text2.txt";
+        String fileName = "C:/Users/zhouchaochao/text2.txt";
 
         //writeFileWithBufferedWriter(fileName);
         writeFileWithFileWriter(fileName);
@@ -34,8 +34,8 @@ public class WriteFileMethod {
         appendMethodB(fileName, "B ");
         appendMethodB(fileName, "B append end. \n");
 
-        //appendMethodA("C:/Users/zhouzhichao/text3.txt", "create file if not exist! A");//如果不存在，会创建文件，但是不会创建路径
-        //appendMethodB("C:/Users/zhouzhichao/text4.txt", "create file if not exist! B");//如果不存在，会创建文件，但是不会创建路径
+        //appendMethodA("C:/Users/zhouchaochao/text3.txt", "create file if not exist! A");//如果不存在，会创建文件，但是不会创建路径
+        //appendMethodB("C:/Users/zhouchaochao/text4.txt", "create file if not exist! B");//如果不存在，会创建文件，但是不会创建路径
     }
 
 

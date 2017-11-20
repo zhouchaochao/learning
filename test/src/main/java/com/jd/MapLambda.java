@@ -14,7 +14,7 @@ import java.util.Map;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/9/6
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class MapLambda {
     private static Logger logger = LoggerFactory.getLogger(Main.class);

@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/8/17
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class Main {
 
@@ -53,7 +53,7 @@ public class Main {
                 results.put(token,"");
             }
 
-            String filePath = "C:/Users/zhouzhichao/cate3_expandnames";
+            String filePath = "C:/Users/zhouchaochao/cate3_expandnames";
             File file = new File(filePath);
             File[] files = file.listFiles();
             for (int i = 0; i < files.length; i++) {
@@ -138,7 +138,7 @@ public class Main {
 
 
 
-            /*String filePath = "C:/Users/zhouzhichao/wareInput.txt";
+            /*String filePath = "C:/Users/zhouchaochao/wareInput.txt";
             BufferedReader bufferedReader = null;
             try {
                 String encoding = "GBK";

@@ -11,7 +11,7 @@ import java.io.*;
  * Company: <a href=www.cc.com>CC</a>
  * Date:  2016/11/3
  *
- * @author <a href=mailto:zhouzhichao@cc.com>chaochao</a>
+ * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
  */
 public class AddPrefixSuffixForText {
 
@@ -19,12 +19,12 @@ public class AddPrefixSuffixForText {
 
     public static void main(String[] args){
 
-        //String userhome = System.getProperty("user.home");// C:\Users\zhouzhichao
+        //String userhome = System.getProperty("user.home");// C:\Users\zhouchaochao
         //logger.info(userhome);
         //logger.info("当前系统的分隔符：" + File.separator);// \
 
-        String inputFileName = "C:/Users/zhouzhichao/input.txt";//  "C:\\Users\\zhouzhichao\\text1.txt";//两种路径，Windows下都支持
-        String outputFileName = "C:/Users/zhouzhichao/output.txt";//  "C:\\Users\\zhouzhichao\\text1.txt";//两种路径，Windows下都支持
+        String inputFileName = "C:/Users/zhouchaochao/input.txt";//  "C:\\Users\\zhouchaochao\\text1.txt";//两种路径，Windows下都支持
+        String outputFileName = "C:/Users/zhouchaochao/output.txt";//  "C:\\Users\\zhouchaochao\\text1.txt";//两种路径，Windows下都支持
         readFileAndWriteFile(inputFileName,outputFileName);
     }
 
