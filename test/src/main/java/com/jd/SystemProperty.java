@@ -79,7 +79,7 @@ public class SystemProperty {
     /** result in Windows
     用户名:    zhouchaochao
     计算机名:    ZB-B6F1J32
-    计算机域名:    360BUYAD
+    计算机域名:    360bb
     本地ip地址:    10.12.165.31
     本地主机名:    ZB-B6F1J32
     JVM可以使用的总内存:    128974848
