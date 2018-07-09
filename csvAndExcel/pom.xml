@@ -29,6 +29,27 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j_version}</version>
         </dependency>
+
+        <!-- excel package -->
+        <!--可处理Excel2003 .xls-->
+        <dependency>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>2.6.12</version>
+        </dependency>
+        <!-- 引入poi，解析excel的workbook视图 -->
+        <!--可处理Excel2007,2010 .xls 和 .xlsx-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.14</version>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -22,7 +22,8 @@ public class WriteCsvFile {
 
     public static void main(String[] args){
 
-        String fileName = "C:/Users/zhouchaochao/csvFile.csv";
+        //String fileName = "C:/Users/zhouchaochao/csvFile.csv";
+        String fileName = "/Users/didi/logs/tmp/csvFile.csv";
         //writeCsvFile(fileName);
 
         String[][] arrs = new String[3][3];
@@ -66,9 +67,9 @@ public class WriteCsvFile {
             for (String[] lines : arr){
                 writeLine = "";
                 for(String token : lines){
-                    writeLine += token + ",";
+                    writeLine += token + split;
                 }
-                bw.write(writeLine.substring(0,writeLine.length()-1) + "\n");
+                bw.write(writeLine.substring(0,writeLine.length()-1) + sufix);
             }
 
             bw.close();
