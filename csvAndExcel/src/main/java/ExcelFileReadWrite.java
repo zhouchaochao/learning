@@ -5,6 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Title: ExcelFileReadWrite
@@ -28,6 +31,18 @@ public class ExcelFileReadWrite {
 
         readExcel("/Users/didi/logs/tmp/excel/excel2003.xls");
         readExcel("/Users/didi/logs/tmp/excel/excel2010.xlsx");
+
+        List<List<String>> content = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            List<String> row = new ArrayList<>();
+            for (int j = 0; j < 3; j++) {
+                row.add("value"+ i + "-" + j);
+            }
+            content.add(row);
+        }
+        ExcelUtil.writeExcel("/Users/didi/logs/tmp/excel/excelUtilTest.xlsx",content);
+        List<List<String>> readContent = ExcelUtil.readExcel("/Users/didi/logs/tmp/excel/excelUtilTest.xlsx");
+        logger.info(Arrays.toString(readContent.get(0).toArray()));
     }
 
 
