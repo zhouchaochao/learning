@@ -28,6 +28,7 @@ public class ExcelUtil {
 
     /**
      * 读取Excel，去掉空行空列
+     * 注意：对于数值类型，会被转换成double。
      * @param filePath
      * @return
      */
@@ -35,7 +36,7 @@ public class ExcelUtil {
 
         FileInputStream in = null;
         Workbook workBook = null;
-        List<List<String>> excel_content = new ArrayList<>();
+        List<List<String>> excel_content = new ArrayList<List<String>>();
 
         try {
             in = new FileInputStream(filePath);
@@ -54,7 +55,7 @@ public class ExcelUtil {
             for (int i = 0; i <= rowNumber; i++) {//注意，这里是<=rowNumber
                 Row row = sheet.getRow(i);
 
-                List<String> rowResult = new ArrayList<>();
+                List<String> rowResult = new ArrayList<String>();
 
                 int columnNum = row.getLastCellNum();//如果有10列，columnNum=10
                 for (int j = 0; j < columnNum; j++) {
