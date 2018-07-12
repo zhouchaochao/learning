@@ -17,6 +17,8 @@
         <module>csvAndExcel</module>
         <module>netty-test</module>
         <module>util</module>
+        <module>jdbc-simple</module>
+        <module>jedis-test</module>
     </modules>
 
     <packaging>pom</packaging>
