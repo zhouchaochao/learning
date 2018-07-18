@@ -5,14 +5,14 @@
 
 
 打包jar
-cd /Users/didi/IdeaProjects/learning/hive-udf
+cd /Users/di————di/IdeaProjects/learning/hive-udf
 mvn clean package -Dmaven.test.skip=true
 打包后生成jar文件:
 .../hive-udf/target/hive-udf-1.0-SNAPSHOT-sources.jar
 
 上传
-cd /Users/didi/IdeaProjects/learning/hive-udf/target/
-curl http://100.69.238.36:8000/resource/tiyan/down/hive-udf-1.0-SNAPSHOT201807181048.jar -X POST -F filecontent=@hive-udf-1.0-SNAPSHOT.jar
+cd /Users/di————di/IdeaProjects/learning/hive-udf/target/
+curl http://100————.69————.238————.36:8000/resource/tiyan/down/hive-udf-1.0-SNAPSHOT201807181048.jar -X POST -F filecontent=@hive-udf-1.0-SNAPSHOT.jar
 然后下载到有hive客户端的机器上
 
 1.创建临时函数测试
@@ -186,7 +186,7 @@ select cc_complexExample_udf(array('a','b','c'),'a');
 
 将jar包上传到hdfs上
 hadoop fs -put -f ~/zhouchaochao/udf/hive-udf-1.0-SNAPSHOT201807181048.jar /user/cs/jar
-对应的全路径为：hdfs://DClusterNmg4/user/cs/jar/hive-udf-1.0-SNAPSHOT201807181048.jar
+对应的全路径为：hdfs://D————Cluster————Nmg4/user/cs/jar/hive-udf-1.0-SNAPSHOT201807181048.jar
 
 
 创建永久函数

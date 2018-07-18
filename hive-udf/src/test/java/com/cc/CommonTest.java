@@ -29,64 +29,14 @@ public class CommonTest {
     private static final Logger logger = LoggerFactory.getLogger(CommonTest.class);
 
     public static void main(String[] args) throws Exception {
-        List<String> list = new ArrayList<String>();
-        list.add("a");
-        list.add("c");
-        list.add("b");
 
-        //String[] arr = (String[])list.toArray();
-        //Collections.sort(list);
-        //System.out.println(list);
-
-        DuplicateRemovalUDF duplicateRemovalUDF = new DuplicateRemovalUDF();
-        GenericUDF.DeferredObject[] arguments = new GenericUDF.DeferredObject[1];
-
-        GenericUDF.DeferredJavaObject deferredJavaObject = new GenericUDF.DeferredJavaObject(list);
-        arguments[0] = deferredJavaObject;
-
-        Object result = evaluate(list);
-        System.out.println(result);
-
-
-        test();
+        testComplexUDFExample();
         testDuplicateRemovalUDF();
 
     }
 
 
-    public static Object evaluate(List<String> list) throws HiveException {
-
-        // get the list and string from the deferred objects using the object inspectors
-
-        // check for nulls
-        if (list == null) {
-            return null;
-        }
-
-        //String[] arr = (String[])list.toArray();
-        //Arrays.sort(arr);//升序排序
-
-        Collections.sort(list);
-
-        String return_value = "";
-        String[] before_kv = null;
-        for (String item : list) {
-            String[] kv = item.split(":");
-            if (kv.length == 2) {
-                if (before_kv == null || !kv[1].equals(before_kv[1])) {//与前一个不重复
-                    return_value += kv[1];
-                }
-                before_kv = kv;
-            } else {
-                return_value += item;
-            }
-        }
-        return return_value;
-
-    }
-
-
-    public static void test() throws Exception{
+    public static void testComplexUDFExample() throws Exception{
         // 建立需要的模型
         ComplexUDFExample example = new ComplexUDFExample();
         ObjectInspector stringOI = PrimitiveObjectInspectorFactory.javaStringObjectInspector;
@@ -117,9 +67,14 @@ public class CommonTest {
 
         // create the actual UDF arguments
         List<String> list = new ArrayList<String>();
-        list.add("a");
-        list.add("b");
-        list.add("c");
+        list.add("101:a");
+        list.add("102:b");
+        list.add("103:c");
+        list.add("200:c");
+        list.add("104:c");
+        list.add("105:a");
+        list.add("106:a");
+        list.add("107:a");
 
         // 测试结果
 
