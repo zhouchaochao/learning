@@ -1,4 +1,6 @@
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.cc.AppleService;
 import com.cc.GroovyUtil;
 import groovy.lang.MissingPropertyException;
@@ -6,8 +8,12 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Title: GroovyUtilTest
@@ -81,7 +87,14 @@ public class GroovyUtilTest {
         infos.put("area", "北京");
         infos.put("closureTimeSec", "0");
         infos.put("detourRate", 0.123456789);
-        infos.put("age", "36");
+        infos.put("intValue", 36);
+        infos.put("doubleValue", 12.3456789);
+        infos.put("booleanStr", "true");
+        infos.put("strValue", "123");
+        infos.put("text", "hello,world.2018   ");
+        infos.put("dateStr", "2018-12-12 11:11:11");
+        infos.put("seconds",1544584271);
+        infos.put("jsonObject", JSON.parseObject("{\"book\":[\"b1\",\"b2\"]}"));
 
         String expression = "100+100 -deductMoney";
         Object result = GroovyUtil.mathCalculate(expression, infos);
@@ -136,15 +149,187 @@ public class GroovyUtilTest {
         //转换成百分数，保留4位小数
         expression = "return (Math.round(detourRate*1000000)/10000);";
         functionResult = GroovyUtil.mathCalculate(expression, infos);
-        logger.info(functionResult + "表达式：" + expression);
+        logger.info(functionResult + " 表达式：" + expression);
 
         //转换数据类型
-        expression = "if(age==null) {return -1;};age.toInteger()";
+        expression = "if(age==null) {return -1;};return age";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "intValue.toInteger()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "intValue.toDouble()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "intValue.toString()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "if(intValue instanceof Integer) {return true;} else {return false;}";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "if(intValue instanceof String) {return true;} else {return false;}";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "if(intValue instanceof Double) {return true;} else {return false;}";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "if(intValue instanceof Long) {return true;} else {return false;}";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //取绝对值
+        expression = "if(intValue < 0) {return -intValue;} else {return intValue;}";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "doubleValue.toInteger()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "doubleValue.toString()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //转换数据类型
+        expression = "booleanStr.toBoolean()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //字符串转数值
+        expression = "strValue.toInteger()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //字符串转数值
+        expression = "strValue.toDouble()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //字符串转数值
+        expression = "strValue.toBoolean()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //字符串转数值
+        expression = "strValue.toLong()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //字符串转数值
+        expression = "strValue.toBigInteger()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //数值精度处理,保留两位小数
+        expression = "Math.round(doubleValue*100)/100";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //公式计算
+        expression = " 10*doubleValue+intValue";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //需要对字符串需要截取，正则替换等
+        expression = "text.size()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //需要对字符串需要截取，正则替换等
+        expression = "text.length()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.trim()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.replaceAll(\"hello\",\"HELLO\")";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.replaceAll('hello','HELLO')";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.contains(\"hello\")";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.substring(0,10)";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.startsWith(\"hello\")";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.endsWith(\" \")";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.equals(\"hello\")";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.toUpperCase()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        expression = "text.toLowerCase()";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //正则匹配
+        expression = "text.matches(\"\\\\w{5},\\\\w{5}\\\\.\\\\d{4}\\\\s*\")";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //正则表达式提取
+        expression = "String regular=\"(\\\\w{5}),(\\\\w{5})\\\\.(\\\\d{4}).*\"; java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regular);  java.util.regex.Matcher matcher = pattern.matcher(text);if(matcher.find()){return matcher.group(3)} else {return '没有匹配到';}";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //时间日期 时间戳转秒 try catch
+        expression = "try {String pattern = \"yyyy-MM-dd HH:mm:ss\";return new java.text.SimpleDateFormat(pattern).parse(dateStr).getTime()/1000; } catch (Exception e) { return 0; }";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //时间日期 时间戳转秒
+        expression = "return new java.text.SimpleDateFormat(\"yyyy-MM-dd HH:mm:ss\").parse(dateStr).getTime()/1000;";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //时间日期 秒转日期
+        expression = "new java.text.SimpleDateFormat(\"yyyy-MM-dd HH:mm:ss\").format(new java.util.Date(1000l * seconds))";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //字符串拼接
+        expression = "\"所在区域是：\"+area";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //json对象数组转换成字符串
+        expression = "jsonObject.toJSONString()";
         functionResult = GroovyUtil.mathCalculate(expression, infos);
         logger.info(functionResult + "表达式：" + expression);
-
-
-
 
     }
 
