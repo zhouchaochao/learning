@@ -170,25 +170,17 @@ public class MergeKSortedLists {
             if (left < right) {
                 swap(lists, left, right);
                 left++;
-                right--;//有可能造成left>right
+                if (left < right) {
+                    right--;
+                }
             }
         }
+        //以上保证left == right
 
-        //以right为分隔符
-        if (left == right) {
-            if (lists[right].val < tag.val) {
-                swap(lists, x, right);
-                sortArray(lists, x, right - 1);
-                sortArray(lists, right + 1, y);
-            } else {
-                sortArray(lists, x, right - 1);
-                sortArray(lists, right, y);
-            }
-        } else if (left > right) {
-            swap(lists, x, right);
-            sortArray(lists, x, right - 1);
-            sortArray(lists, right + 1, y);
-        }
+        int splitIndex = lists[right].val < tag.val ? right : right - 1;//找到tag分隔符的位置
+        swap(lists, x, splitIndex);
+        sortArray(lists, x, splitIndex - 1);
+        sortArray(lists, splitIndex + 1, y);
     }
 
     public void swap(ListNode[] lists, int x, int y) {
