@@ -1,6 +1,7 @@
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSONPath;
 import com.cc.AppleService;
 import com.cc.GroovyUtil;
 import groovy.lang.MissingPropertyException;
@@ -95,6 +96,8 @@ public class GroovyUtilTest {
         infos.put("dateStr", "2018-12-12 11:11:11");
         infos.put("seconds",1544584271);
         infos.put("jsonObject", JSON.parseObject("{\"book\":[\"b1\",\"b2\"]}"));
+        infos.put("apiResult", "{\"status\":1,\"driverName\":\"李翠花\",\"nickName\":\"所谓伊人\"}");
+
 
         String expression = "100+100 -deductMoney";
         Object result = GroovyUtil.mathCalculate(expression, infos);
@@ -329,7 +332,23 @@ public class GroovyUtilTest {
         //json对象数组转换成字符串
         expression = "jsonObject.toJSONString()";
         functionResult = GroovyUtil.mathCalculate(expression, infos);
-        logger.info(functionResult + "表达式：" + expression);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //json对象解析
+        expression = "com.alibaba.fastjson.JSONObject jsonObject = com.alibaba.fastjson.JSON.parseObject(apiResult);\n" +
+                "        if (jsonObject.containsKey(\"status\")&&jsonObject.getInteger(\"status\").equals(0)) { return com.alibaba.fastjson.JSONPath.eval(jsonObject, \"driverName\"); } else {return com.alibaba.fastjson.JSONPath.eval(jsonObject, \"nickName\");}\n";
+        functionResult = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(functionResult + " 表达式：" + expression);
+
+        //
+        expression = "new Random().nextInt(1000)";
+        result = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(result.toString() + "。类型：" + result.getClass().toString() + "表达式：" + expression);
+
+        //
+        expression = "System.currentTimeMillis()";
+        result = GroovyUtil.mathCalculate(expression, infos);
+        logger.info(result.toString() + "。类型：" + result.getClass().toString() + "表达式：" + expression);
 
     }
 
