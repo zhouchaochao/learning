@@ -3,6 +3,7 @@ package com.cc;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import redis.clients.jedis.exceptions.JedisDataException;
 
 /**
  * Title: SetTest
@@ -49,6 +50,45 @@ public class SetTest extends BaseTest {
         System.out.println("eleSet1和eleSet2的并集:" + jedis.sunion("eleSet1", "eleSet2"));
         System.out.println("eleSet1和eleSet2的差集:" + jedis.sdiff("eleSet1", "eleSet2"));//eleSet1中有，eleSet2中没有
 
+    }
+
+
+
+
+    @Test
+    public void testSetExpire() throws Exception{
+
+        String key = "updatedFormId0249";
+        System.out.println("key不存在时。所有元素为：" + jedis.smembers(key));
+
+        //System.out.println("设置过期时间为5s:" + jedis.expire(key, 5));
+        System.out.println("是否存在:" + jedis.exists(key));
+        System.out.println("设置过期时间为5s:" + jedis.expire(key, 5));
+        System.out.println("设置过期时间后 是否存在:" + jedis.exists(key));
+
+        System.out.println("============向集合中添加元素============");
+        System.out.println(jedis.sadd(key, "1"));
+        System.out.println(jedis.sadd(key, "3"));
+
+        try {
+            System.out.println("当做字符串获取：" + jedis.get(key));
+        } catch (JedisDataException e) {
+            logger.error(e.getMessage(), e);
+        }
+
+        System.out.println("包含元素的个数：" + jedis.scard(key));
+
+        System.out.println("过期时间：" + jedis.ttl(key));
+
+        System.out.println("设置过期时间为5s:" + jedis.expire(key, 5));
+        Thread.sleep(2000);
+        System.out.println("2000后查看剩余生存时间：" + jedis.ttl(key));
+        //System.out.println("移除键username的生存时间：" + jedis.persist(key));
+        //System.out.println("查看剩余生存时间：" + jedis.ttl(key));
+        Thread.sleep(4000);
+        System.out.println("6000后查看剩余生存时间：" + jedis.ttl(key));
+        System.out.println("删除：" + jedis.del(key));
+        System.out.println("是否存在:" + jedis.exists(key));
     }
 
 }

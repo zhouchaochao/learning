@@ -16,7 +16,7 @@ import redis.clients.jedis.Jedis;
 
 public class BaseTest {
 
-    private static final String ipAddr = "10.94.96.197";
+    private static final String ipAddr = "10.179.115.64";
     private static final int port = 6379;
     public static Jedis jedis = null;
 

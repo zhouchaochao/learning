@@ -1,11 +1,14 @@
 package com.cc;
 
+import com.alibaba.fastjson.JSON;
+import com.cc.distribute.cache.FormCache;
+import com.cc.distribute.cache.InvokeEntity;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Method;
+import java.util.*;
 
 /**
  * Title: SortedSetTest
@@ -50,6 +53,93 @@ public class SortedSetTest extends BaseTest {
         System.out.println("删除个数：" + num);
         System.out.println("zset中的所有元素：" + jedis.zrange("zset", 0, -1));
 
+    }
+
+
+    @Test
+    public void testSortedSetExist() throws Exception{
+
+        String key = "updatedFormId";
+
+        System.out.println("是否存在:" + jedis.exists(key));
+        System.out.println(jedis.zadd(key, 10, "shi"));
+        System.out.println(jedis.zadd(key, 15, "shiwu"));
+        System.out.println(jedis.zadd(key, 20, "ershi"));
+        System.out.println("所有元素：" + jedis.zrange(key, 0, -1));
+        System.out.println("所有元素zrangeWithScores：" + jedis.zrangeWithScores(key, 0, -1));
+        System.out.println("15-20元素：" + jedis.zrangeByScore(key, 15, 20));
+
+        System.out.println("删除一个元素：" + jedis.zrem(key, "shiwu"));
+        System.out.println("所有元素：" + jedis.zrange(key, 0, -1));
+
+        System.out.println("按照分数删除：" + jedis.zremrangeByScore(key, 0, 15));
+        System.out.println("所有元素：" + jedis.zrange(key, 0, -1));
+
+        System.out.println("删除：" + jedis.del(key));
+        System.out.println("是否存在:" + jedis.exists(key));
+    }
+
+    @Test
+    public void abc() throws Exception{
+
+        FormCache formCache = new FormCache();
+        formCache.setInvalidate("10",2l);
+
+        System.out.println(this.getClass().getName() + ":"
+                + Thread.currentThread() .getStackTrace()[1].getMethodName());
+
+        String className = "com.cc.distribute.cache.FormCache";
+        String methodName = "setInvalidate";
+        String argument1 = "10";
+        Long argument2 = 20l;
+        Class clazz1 = String.class;
+        Class clazz2 = Long.class;
+
+        InvokeEntity invokeEntity = new InvokeEntity();
+        invokeEntity.setClassName(className);
+        invokeEntity.setMethodName(methodName);
+        invokeEntity.addParam(argument1);
+        invokeEntity.addParam(argument2);
+        //invokeEntity.addParamsType(clazz1);
+        //invokeEntity.addParamsType(clazz2);
+
+        String jsonStr = JSON.toJSONString(invokeEntity);
+        System.out.println(jsonStr);
+
+        InvokeEntity invokeEntityNew = JSON.parseObject(jsonStr,InvokeEntity.class);
+        String jsonStrNew = JSON.toJSONString(invokeEntityNew);
+        System.out.println(jsonStrNew);
+
+        Class<?> demo = null;
+        try {
+            demo = Class.forName(invokeEntityNew.getClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            Class[] parasClassArr = new Class[invokeEntityNew.getParamsType().size()];
+            invokeEntityNew.getParamsType().toArray(parasClassArr);
+            Object[] parasArr = invokeEntityNew.getParamsValue().toArray();
+            for (int i = 0; i < parasClassArr.length; i++) {
+                if (parasClassArr[i].equals(String.class)) {
+                    parasArr[i] = String.valueOf(parasArr[i]);
+                } else if (parasClassArr[i].equals(Long.class)) {
+                    parasArr[i] = Long.valueOf(parasArr[i].toString());
+                } else if (parasClassArr[i].equals(Double.class)) {
+                    parasArr[i] = Double.valueOf(parasArr[i].toString());
+                } else if (parasClassArr[i].equals(Integer.class)) {
+                    parasArr[i] = Integer.valueOf(parasArr[i].toString());
+                } else if (parasClassArr[i].equals(Short.class)) {
+                    parasArr[i] = Short.valueOf(parasArr[i].toString());
+                } else if (parasClassArr[i].equals(Boolean.class)) {
+                    parasArr[i] = Boolean.valueOf(parasArr[i].toString());
+                }
+            }
+            Method method = demo.getMethod(invokeEntityNew.getMethodName(),parasClassArr);
+            method.invoke(demo.newInstance(),parasArr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
