@@ -1,11 +1,7 @@
+/*
 package com.jd.zk;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jd.jsf.zookeeper.IZkChildListener;
-import com.jd.jsf.zookeeper.IZkDataListener;
-import com.jd.jsf.zookeeper.ZkClient;
-import com.jd.jsf.zookeeper.common.NetUtils;
-import org.apache.zookeeper.CreateMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+*/
 /**
  * Title: SelectMasterMain
  * Description: SelectMasterMain
@@ -23,14 +20,15 @@ import java.util.concurrent.TimeUnit;
  * Date:  2016/8/19
  *
  * @author <a href=mailto:zhouchaochao@cc.com>chaochao</a>
- */
+ *//*
+
 public class SelectMasterMain {
 
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    private static ZkClient zkClient = null;
+    //private static ZkClient zkClient = null;
 
     private static String path = "/aaa_selectMaster/scheduleTask/server";
 
@@ -40,18 +38,22 @@ public class SelectMasterMain {
 
     private static String serverId = "";
 
-    private static Map<String ,IZkChildListener> ZkChildListeners = new HashMap<String, IZkChildListener>();
+    //private static Map<String ,IZkChildListener> ZkChildListeners = new HashMap<String, IZkChildListener>();
 
     static {
         try {
             propertyFactory = new PropertyFactory("worker.properties");
-            zkClient = new ZkClient((String) propertyFactory.getProperty("zk.address"), Long.valueOf(propertyFactory.getProperty("zk.connectionTimeout", "10000")),
+            */
+/*zkClient = new ZkClient((String) propertyFactory.getProperty("zk.address"), Long.valueOf(propertyFactory.getProperty("zk.connectionTimeout", "10000")),
                     Integer.valueOf(propertyFactory.getProperty("zk.sessionTimeout", "30000")));
+*//*
 
-            serverId = ScheduleServer.getPid() + "$" + NetUtils.getLocalAddress().getLocalHost().getHostAddress() + "$" + (UUID.randomUUID().toString().replaceAll("-", "")
-                    .toUpperCase());
+            */
+/*serverId = ScheduleServer.getPid() + "$" + NetUtils.getLocalAddress().getLocalHost().getHostAddress() + "$" + (UUID.randomUUID().toString().replaceAll("-", "")
+                    .toUpperCase());*//*
 
-        } catch (IOException e) {
+
+        } catch (Exception e) {
             logger.error("create zkClient error", e);
         }
     }
@@ -61,9 +63,11 @@ public class SelectMasterMain {
         try {
             logger.info("hello cc");
 
+*/
 /*            String ip = NetUtils.getLocalAddress().getLocalHost().getHostAddress();
             String id = ScheduleServer.getPid() + "$" + ip + "$" + (UUID.randomUUID().toString().replaceAll("-", "")
-                    .toUpperCase());*/
+                    .toUpperCase());*//*
+
 
             logger.info("本server id:" + serverId);
 
@@ -92,11 +96,13 @@ public class SelectMasterMain {
 
 
 
+*/
 /*
             Thread.sleep(10000);
             server.setId("200");
             registerScheduleServer(server);
-*/
+*//*
+
             // 启动本地服务，然后hold住本地服务
             synchronized (Main.class) {
                 while (true) {
@@ -118,12 +124,14 @@ public class SelectMasterMain {
 
         String zkPath = path + "/" + id;
 
+*/
 /*        boolean exists = zkClient.exists(path);
         logger.info("是否存在：" + exists);
         if (!exists) {
             logger.info("不存在：" + path + ",创建");
             zkClient.createPersistent(path, true);//createParents
-        }*/
+        }*//*
+
 
 
         if(!zkClient.exists(zkPath)){
@@ -138,9 +146,11 @@ public class SelectMasterMain {
             public void handleChildChange(String s, List<String> list) throws Exception {
                 logger.info("子节点大小：" + list.size() + " s:" + s);
                 Collections.sort(list);
+*/
 /*                for(String c :list){
                     logger.info("子节点：" + c);
-                }*/
+                }*//*
+
                 logger.info("master节点：" + getMasterId(path));
             }
         };
@@ -167,3 +177,4 @@ public class SelectMasterMain {
         return "";
     }
 }
+*/

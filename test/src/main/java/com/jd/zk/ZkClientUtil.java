@@ -1,6 +1,5 @@
 package com.jd.zk;
 
-import com.jd.jsf.zookeeper.ZkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,21 +14,21 @@ public class ZkClientUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(ZkClientUtil.class);
 
-    private static ZkClient zkClient;
+    //private static ZkClient zkClient;
 
     private static PropertyFactory propertyFactory;
 
     static {
         try {
             propertyFactory = new PropertyFactory("worker.properties");
-            zkClient = new ZkClient((String) propertyFactory.getProperty("zk.address"),Long.valueOf(propertyFactory.getProperty("zk.connectionTimeout","10000")),
-                    Integer.valueOf(propertyFactory.getProperty("zk.sessionTimeout","30000")));
-        } catch (IOException e) {
+            //zkClient = new ZkClient((String) propertyFactory.getProperty("zk.address"),Long.valueOf(propertyFactory.getProperty("zk.connectionTimeout","10000")),
+             //       Integer.valueOf(propertyFactory.getProperty("zk.sessionTimeout","30000")));
+        } catch (Exception e) {
             logger.error("create zkClient error",e);
         }
     }
 
-    public static ZkClient getZkClient(){
+/*    public static ZkClient getZkClient(){
         return zkClient;
-    }
+    }*/
 }

@@ -1,3 +1,4 @@
+/*
 package com.jd.zk;
 
 import com.alibaba.fastjson.JSONObject;
@@ -12,6 +13,7 @@ import static com.jd.zk.WorkerUtil.FIXEDMASTER;
 import static com.jd.zk.ZkClientUtil.*;
 import static com.jd.zk.ZkClientUtil.getZkClient;
 
+*/
 /**
  * worker 调度管理工具类
  * 便于管理端对worker进行管理
@@ -19,7 +21,8 @@ import static com.jd.zk.ZkClientUtil.getZkClient;
  * @author : wutao
  * @version : WorkerScheduleManagerUtil.java 2014/08/19 15:33
  * @copyright www.cc.com <http://www.cc.com/>
- */
+ *//*
+
 public class WorkerScheduleManagerUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(WorkerScheduleManagerUtil.class);
@@ -30,13 +33,15 @@ public class WorkerScheduleManagerUtil {
         return WorkerUtil.getMasterID(getZkClient(), workerType);
     }
 
-    /**
+    */
+/**
      * 是否是master
      *
      * @param serverID
      * @param workerType
      * @return
-     */
+     *//*
+
     public static boolean isMaster(String serverID, String workerType) {
         if (StringUtils.isNotEmpty(workerType) && serverID.equals(getMasterID(workerType))){
             return true;
@@ -44,11 +49,13 @@ public class WorkerScheduleManagerUtil {
         return false;
     }
 
-    /**
+    */
+/**
      * 启动worker的调度执行
      *
      * @param workerType
-     */
+     *//*
+
     public static void startWorker(String workerType) throws Exception {
         try {
             List<ScheduleServer> servers = WorkerUtil.loadScheduleServers(ZkClientUtil.getZkClient(),workerType);
@@ -66,11 +73,13 @@ public class WorkerScheduleManagerUtil {
         }
     }
 
-    /**
+    */
+/**
      * 停止worker的执行
      *
      * @param workerType
-     */
+     *//*
+
     public static void stopWorker(String workerType ) throws Exception {
         try {
             List<ScheduleServer> servers = WorkerUtil.loadScheduleServers(ZkClientUtil.getZkClient(),workerType);
@@ -88,12 +97,14 @@ public class WorkerScheduleManagerUtil {
         }
     }
 
-    /**
+    */
+/**
      * 启动指定server
      *
      * @param workerType
      * @param serverID
-     */
+     *//*
+
     public static void startWorker(String workerType,String serverID){
         try {
             List<ScheduleServer> servers = WorkerUtil.loadScheduleServers(ZkClientUtil.getZkClient(),workerType);
@@ -113,12 +124,14 @@ public class WorkerScheduleManagerUtil {
         }
     }
 
-    /**
+    */
+/**
      * 停止指定serverID的server
      *
      * @param workerType
      * @param serverID
-     */
+     *//*
+
     public static void stopWorker(String workerType,String serverID ){
         try {
             List<ScheduleServer> servers = WorkerUtil.loadScheduleServers(ZkClientUtil.getZkClient(),workerType);
@@ -139,13 +152,15 @@ public class WorkerScheduleManagerUtil {
     }
 
 
-    /**
+    */
+/**
      * worker 是否在运行
      *
      * @param workerType
      * @param workerKind
      * @return
-     */
+     *//*
+
     public static boolean isRunning(String workerType ,String workerKind){
         if ( "single".equals(workerKind)){
             String masterServerID = WorkerUtil.getMasterID(getZkClient(),workerType);
@@ -177,12 +192,14 @@ public class WorkerScheduleManagerUtil {
         return false;
     }
 
-    /**
+    */
+/**
      * 指定workerType下面所有的schedule server实例
      *
      * @param workerType
      * @return
-     */
+     *//*
+
     public static List<ScheduleServer> listWorkerScheduleServers(String workerType){
         try {
             return WorkerUtil.loadScheduleServers(ZkClientUtil.getZkClient(),workerType);
@@ -194,12 +211,14 @@ public class WorkerScheduleManagerUtil {
 
 
 
-    /**
+    */
+/**
      * 设置为固定的master结点
      * @param workerType
      * @param serverID
      * @return
-     */
+     *//*
+
     public static boolean fixMaster(String workerType,String serverID) {
         ZkClient zkClient = getZkClient();
         JSONObject masterJSON = WorkerUtil.getMasterServerID(zkClient,workerType,null);
@@ -208,11 +227,13 @@ public class WorkerScheduleManagerUtil {
     }
 
 
-    /**
+    */
+/**
      * 取消为固定的master结点
      * @param workerType
      * @return
-     */
+     *//*
+
     public static boolean cancelfixMaster(String workerType) {
         ZkClient zkClient = getZkClient();
         JSONObject masterJSON = WorkerUtil.getMasterServerID(zkClient,workerType,null);
@@ -221,3 +242,4 @@ public class WorkerScheduleManagerUtil {
     }
 
 }
+*/

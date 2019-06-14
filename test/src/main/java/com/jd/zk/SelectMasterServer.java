@@ -1,8 +1,5 @@
 package com.jd.zk;
 
-import com.jd.jsf.zookeeper.IZkChildListener;
-import com.jd.jsf.zookeeper.ZkClient;
-import com.jd.jsf.zookeeper.common.NetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +27,7 @@ public class SelectMasterServer {
 
     private static String zkTopPath = "/aaa_selectMaster";
 
-    private static ZkClient zkClient = ZkClientUtil.getZkClient();
+    //private static ZkClient zkClient = ZkClientUtil.getZkClient();
 
     public static Map<String, String> serverMasterId = new ConcurrentHashMap<String, String>();//server 对应的 masterId
 
@@ -142,17 +139,17 @@ public class SelectMasterServer {
             }
 
             String serverPath = zkTopPath + "/" + taskName;
-            if (!zkClient.exists(serverPath)) {
+            /*if (!zkClient.exists(serverPath)) {
                 logger.info("不存在,创建：" + serverPath);
                 zkClient.createPersistent(serverPath, null);
-            }
+            }*/
 
             String nodePath = serverPath + "/" + serverId;
             //创建id的临时节点
-            if (!zkClient.exists(nodePath)) {
+            /*if (!zkClient.exists(nodePath)) {
                 logger.info("不存在,创建：" + nodePath);
                 zkClient.createEphemeral(nodePath, null);
-            }
+            }*/
             //zkClient.create(zkPath,null, CreateMode.EPHEMERAL_SEQUENTIAL);//创建顺序节点，后面会自动加序列号
 
 /*            IZkChildListener iZkChildListener = new IZkChildListener() {
@@ -193,7 +190,7 @@ public class SelectMasterServer {
         String masterId = "";
         try {
             String serverPath = zkTopPath + "/" + taskName;
-            List<String> childs = zkClient.getChildren(serverPath);
+            List<String> childs = null;//zkClient.getChildren(serverPath);
             Collections.sort(childs);
             masterId = childs.get(0);//排序后，返回第一个
         } catch (Exception e) {
@@ -232,8 +229,8 @@ public class SelectMasterServer {
 
         String serverId = "";
         try {
-            serverId = getPid() + "$" + NetUtils.getLocalAddress().getLocalHost().getHostAddress() + "$" + (UUID.randomUUID().toString().replaceAll("-", "")
-                    .toUpperCase());
+            /*serverId = getPid() + "$" + NetUtils.getLocalAddress().getLocalHost().getHostAddress() + "$" + (UUID.randomUUID().toString().replaceAll("-", "")
+                    .toUpperCase());*/
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             serverId = getPid() + "$" + "0.0.0.0" + "$" + (UUID.randomUUID().toString().replaceAll("-", "")
@@ -259,7 +256,7 @@ public class SelectMasterServer {
 
     public static String getLocalIp() {
         try {
-            return NetUtils.getLocalAddress().getLocalHost().getHostAddress();
+            return null;// NetUtils.getLocalAddress().getLocalHost().getHostAddress();
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return "";

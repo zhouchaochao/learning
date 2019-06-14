@@ -1,8 +1,6 @@
 package com.jd.zk;
 
 import com.alibaba.fastjson.JSONObject;
-import com.jd.jsf.zookeeper.common.NetUtils;
-import com.jd.jsf.zookeeper.common.StringUtils;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
@@ -57,10 +55,10 @@ public class ScheduleServer {
         } else {
             scheduleServer.setStart(false);
         }
-        try {
-            scheduleServer.ip = NetUtils.getLocalAddress().getLocalHost().getHostAddress();
+        /*try {
+            scheduleServer.ip = null;//NetUtils.getLocalAddress().getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
-        }
+        }*/
         scheduleServer.id = getPid()+"$"+scheduleServer.ip + "$"+ (UUID.randomUUID().toString().replaceAll("-", "")
                 .toUpperCase());
 
@@ -74,9 +72,9 @@ public class ScheduleServer {
      * @return 从server id 中解析出来IP地址
      */
     public static String getIpFromID(String id){
-        if (StringUtils.isBlank(id)){
-            return null;
-        }
+        //if (StringUtils.isBlank(id)){
+            //return null;
+        //}
         if ( id.indexOf("$") > 0 ){
             return id.split("$")[0];
         } else {

@@ -1,3 +1,4 @@
+/*
 package com.jd.zk;
 
 import com.alibaba.fastjson.JSONException;
@@ -16,11 +17,13 @@ import java.util.Collections;
 import java.util.List;
 
 
+*/
 /**
  * @author : wutao
  * @version : WorkerUtil.java 2014/08/13 16:10
  * @copyright www.cc.com <http://www.cc.com/>
- */
+ *//*
+
 public class WorkerUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(WorkerUtil.class);
@@ -32,12 +35,14 @@ public class WorkerUtil {
     public static final String MASTERID = "masterID";
 
 
-    /**
+    */
+/**
      * 获得master结点 server id
      *
      * @param workerType
      * @return
-     */
+     *//*
+
     public static String getMasterID(ZkClient zkClient,String workerType){
         String zkPath = "/"+ Constants.SAF_WORKER_ROOT+"/"+workerType+"/"+Constants.SAF_WORKER_SERVER;
         byte[] value = zkClient.readData(zkPath,true);
@@ -61,14 +66,16 @@ public class WorkerUtil {
     }
 
 
-    /**
+    */
+/**
      * 根据workerType以及serverID获取ScheduleServer对象
      *
      * @param zkClient
      * @param workerType
      * @param serverID
      * @return
-     */
+     *//*
+
     public static ScheduleServer loadScheduleServer(ZkClient zkClient,String workerType,String serverID){
         String zkPath = "/"+Constants.SAF_WORKER_ROOT+"/"+ workerType +"/"+Constants.SAF_WORKER_SERVER+"/"+serverID;
         byte[] value = zkClient.readData(zkPath,true);
@@ -80,7 +87,8 @@ public class WorkerUtil {
     }
 
 
-    /**
+    */
+/**
      * 更新schedule server
      *
      * @param zkClient
@@ -88,7 +96,8 @@ public class WorkerUtil {
      * @param server
      * @throws KeeperException
      * @throws InterruptedException
-     */
+     *//*
+
     public static boolean updateScheduleServer(ZkClient zkClient,String workerType,ScheduleServer server)  {
         String zkPath = "/"+Constants.SAF_WORKER_ROOT+"/"+ workerType +"/"+Constants.SAF_WORKER_SERVER+"/"+server.getId();
         JSONObject serverJSON = (JSONObject) JSONObject.toJSON(server);
@@ -106,14 +115,16 @@ public class WorkerUtil {
 
     }
 
-    /**
+    */
+/**
      * 获取指定workerType下的ScheduleServer对象
      *
      * @param zkClient
      * @param workerType
      * @return
      * @throws Exception
-     */
+     *//*
+
     public static List<ScheduleServer> loadScheduleServers(ZkClient zkClient,String workerType) throws Exception {
         String zkPath = "/"+Constants.SAF_WORKER_ROOT+"/"+ workerType +"/"+Constants.SAF_WORKER_SERVER;
         List<String> serverIDs = loadScheduleServerIds(zkClient, workerType);
@@ -189,13 +200,15 @@ public class WorkerUtil {
         return null;
     }
 
-    /**
+    */
+/**
      * 获取当前workerType 所有running状态的schedule server 信息
 
      * @param zkClient
      * @param workerType
      * @return
-     */
+     *//*
+
     public static List<ScheduleServerInfo> getScheduleServerInfoList(ZkClient zkClient,String workerType){
         if ( workerType == null ){
             return null;
@@ -226,28 +239,32 @@ public class WorkerUtil {
         return null;
     }
 
-    /**
+    */
+/**
      * load workerType下所有的服务结点ID
      *
      * @param zkClient
      * @param workerType
      * @return
      * @throws Exception
-     */
+     *//*
+
     public static List<String> loadScheduleServerIds(ZkClient zkClient,String workerType) throws Exception {
         String zkPath = "/"+Constants.SAF_WORKER_ROOT+"/"+ workerType +"/"+Constants.SAF_WORKER_SERVER;
         return zkClient.getChildren(zkPath);
     }
 
 
-    /**
+    */
+/**
      * 是否是master
      *
      * @param zkClient
      * @param serverID
      * @param workerType
      * @return
-     */
+     *//*
+
     public static boolean isMaster(ZkClient zkClient,String serverID, String workerType) {
         if (StringUtils.isNotEmpty(workerType) && serverID.equals(getMasterID(zkClient,workerType))){
             return true;
@@ -256,12 +273,14 @@ public class WorkerUtil {
     }
 
 
-    /**
+    */
+/**
      * 获得master结点 server id
      *
      * @param workerType
      * @return
-     */
+     *//*
+
     public static JSONObject getMasterServerID(ZkClient zkClient,String workerType,Stat stat){
         String zkPath = "/"+Constants.SAF_WORKER_ROOT+"/"+workerType+"/"+Constants.SAF_WORKER_SERVER;
         byte[] value = null;
@@ -294,3 +313,4 @@ public class WorkerUtil {
     }
 
 }
+*/

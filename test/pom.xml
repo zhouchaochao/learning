@@ -48,11 +48,11 @@
             <version>${slf4j_version}</version>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <artifactId>saf-zookeeper-common</artifactId>
             <groupId>com.jd</groupId>
             <version>2.1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.alibaba</groupId>
