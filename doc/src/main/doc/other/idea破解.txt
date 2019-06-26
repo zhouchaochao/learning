@@ -1,0 +1,17 @@
+idea 破解
+
+参考：
+http://blog.csdn.net/u013673242/article/details/72243066?utm_source=itdadao&utm_medium=referral
+
+
+1.下载JetbrainsCrack-2.6.10-release-enc.jar
+http://idea.lanyus.com
+放到：
+/Applications/IntelliJ IDEA.app/Contents/bin/JetbrainsCrack-2.6.10-release-enc.jar
+
+2.修改idea.vmoptions
+最后一行添加：
+-javaagent:/Applications/IntelliJ IDEA.app/Contents/bin/JetbrainsCrack-2.6.10-release-enc.jar
+
+
+

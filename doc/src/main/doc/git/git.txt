@@ -1,0 +1,28 @@
+Git
+
+删除远程分支Chapater6
+git push origin --delete Chapater6
+
+删除本地分支（在主分支中）
+git branch -d Chapater8 可以
+
+查看所有分支
+git branch -a
+
+git checkout -b search origin/search   //作用是checkout远程的search分支，在本地起名为search分支，并切换到本地的search分支
+git pull
+git pull origin dev //从远端dev分支pull
+git checkout dev //切换回dev分支，并开始开发。
+git branch -a //列出所有分支名称
+git branch //列出本地所有分支
+
+git强制覆盖本地命令（单条执行）：
+git fetch --all && git reset --hard origin/dev_branch && git pull
+
+cd /home/knowledge
+rm -rf .git
+rm -rf wheeljack-web
+ls -a
+git clone -b apply wheeljack-web.git
+//从远端clone apply分支到本地。
+

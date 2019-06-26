@@ -1,0 +1,16 @@
+
+列出所有任务：
+crontab -l
+
+30 6 * * * /home/chaochao/cephVolume/data-ide/workspace/zhouchaochao/kefu-hive-shell/old24HourFlowRate/intelligentSolveRate/intelligentSolveRate_oldNoQid.sh >> /home/chaochao/cephVolume/data-ide/workspace/zhouchaochao/kefu-hive-shell/old24HourFlowRate/intelligentSolveRate/intelligentSolveRate_oldNoQid.log 2>&1
+30 7 * * * /home/chaochao/cephVolume/data-ide/workspace/zhouchaochao/kefu-hive-shell/old24HourintelligentSolveRate/runIntelligentSolveRate.sh >> /home/chaochao/cephVolume/data-ide/workspace/zhouchaochao/kefu-hive-shell/old24HourintelligentSolveRate/runIntelligentSolveRate.log 2>&1
+
+30 8 * * * cd /home/chaochao/cephVolume/data-ide/workspace/zhanghaosu/py_tools/com/cc && rm -rf csbot.log && source /etc/profile && python isc_csbot_data_funneling_task.py >> csbot.log 2>&1
+30 8 * * * cd /home/chaochao/cephVolume/data-ide/workspace/zhanghaosu/py_tools/com/cc && rm -rf csbot_kuaiche.log &&source /etc/profile && python isc_kc_data_funneling_task.py >> csbot_kuaiche.log 2>&1
+30 9 * * * cd /home/chaochao/cephVolume/data-ide/workspace/zhanghaosu/py_tools/com/cc && rm -rf csbot_zhuanche.log && source /etc/profile && python isc_zc_data_funneling_task.py >> csbot_zhuanche.log 2>&1
+
+#1 * * * * cd /home/chaochao/cephVolume/data-ide/workspace/houmingxiang/floder_1/audio_check && sh start.sh >> start.log 2>&1
+0 9 * * * cd /home/chaochao/cephVolume/data-ide/workspace/houmingxiang/floder_3/audio_check && sh start.sh >> start.log 2>&1
+10 9 * * * cd /home/chaochao/cephVolume/data-ide/workspace/houmingxiang/floder_4/audio_check && sh start.sh >> start.log 2>&1
+1 * * * * cd /home/chaochao/cephVolume/data-ide/workspace/houmingxiang/other && sh test.sh >> haha.log 2>&1
+
