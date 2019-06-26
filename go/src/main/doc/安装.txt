@@ -1,0 +1,42 @@
+0.安装教程
+https://www.runoob.com/go/go-environment.html
+
+1.下载安装包
+下载：go1.12.6.darwin-amd64.pkg
+下载位置：https://golang.org/doc/install?download=go1.12.6.darwin-amd64.pkg
+双击安装，安装到目录/usr/local/go
+
+2.环境变量设置
+vim ~/.bash_profile
+设置：
+# SET GO EVIVRONMENT
+export PATH=$PATH:/usr/local/go/bin
+保存后重新加载环境变量
+source ~/.bash_profile
+
+3.验证
+执行命令go version
+返回：go version go1.12.6 darwin/amd64
+
+4.写代码
+创建文件hello.go
+内容：
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+
+5.运行
+go run hello.go
+输出结果：
+Hello, World!
+或者先编译
+go build hello.go
+生成
+hello
+然后运行
+./hello
+
