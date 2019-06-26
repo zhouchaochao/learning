@@ -26,11 +26,11 @@ public class ExcelFileReadWrite {
 
 
     public static void main(String[] args) {
-        writeExcel("/Users/didi/logs/tmp/excel/excel2003.xls");
-        writeExcel("/Users/didi/logs/tmp/excel/excel2010.xlsx");
+        writeExcel("/Users/cc/logs/tmp/excel/excel2003.xls");
+        writeExcel("/Users/cc/logs/tmp/excel/excel2010.xlsx");
 
-        readExcel("/Users/didi/logs/tmp/excel/excel2003.xls");
-        readExcel("/Users/didi/logs/tmp/excel/excel2010.xlsx");
+        readExcel("/Users/cc/logs/tmp/excel/excel2003.xls");
+        readExcel("/Users/cc/logs/tmp/excel/excel2010.xlsx");
 
         List<List<String>> content = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -40,8 +40,8 @@ public class ExcelFileReadWrite {
             }
             content.add(row);
         }
-        ExcelUtil.writeExcel("/Users/didi/logs/tmp/excel/excelUtilTest.xlsx",content);
-        List<List<String>> readContent = ExcelUtil.readExcel("/Users/didi/logs/tmp/excel/excelUtilTest.xlsx");
+        ExcelUtil.writeExcel("/Users/cc/logs/tmp/excel/excelUtilTest.xlsx",content);
+        List<List<String>> readContent = ExcelUtil.readExcel("/Users/cc/logs/tmp/excel/excelUtilTest.xlsx");
         logger.info(Arrays.toString(readContent.get(0).toArray()));
     }
 

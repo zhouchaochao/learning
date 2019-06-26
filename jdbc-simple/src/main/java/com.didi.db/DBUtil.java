@@ -1,4 +1,4 @@
-package com.didi.db;
+package com.cc.db;
 
 import org.apache.commons.lang3.tuple.ImmutableTriple;
 import org.apache.commons.lang3.tuple.Triple;

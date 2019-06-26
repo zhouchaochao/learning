@@ -16,7 +16,7 @@
         <param name="encoding" value="utf-8" />
         <param name="MaxFileSize" value="10MB" />
         <param name="MaxBackupIndex" value="5" />
-        <param name="File" value="/Users/didi/logs/learning/leetCode.log" />
+        <param name="File" value="/Users/cc/logs/learning/leetCode.log" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d %t %p [%c:%M] - %m%n" />
         </layout>

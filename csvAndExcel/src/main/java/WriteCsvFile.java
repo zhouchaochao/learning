@@ -23,7 +23,7 @@ public class WriteCsvFile {
     public static void main(String[] args){
 
         //String fileName = "C:/Users/zhouchaochao/csvFile.csv";
-        String fileName = "/Users/didi/logs/tmp/csvFile.csv";
+        String fileName = "/Users/cc/logs/tmp/csvFile.csv";
         //writeCsvFile(fileName);
 
         String[][] arrs = new String[3][3];

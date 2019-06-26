@@ -23,6 +23,8 @@
         <module>common-test</module>
         <module>shell</module>
         <module>groovy-test</module>
+        <module>doc</module>
+        <module>go</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -35,7 +35,7 @@ public class ExcelFile {
 
             // 创建xls文件
             // 测试发现xls可以，xlsx不行
-            File file = new File("/Users/didi/logs/tmp/excel_test.xls");
+            File file = new File("/Users/cc/logs/tmp/excel_test.xls");
             workbook = Workbook.createWorkbook(file);
             WritableSheet sheet = workbook.createSheet("s1", 0);
             setSheetHeader(sheet);

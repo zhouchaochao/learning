@@ -1,4 +1,4 @@
-package com.didi.db;
+package com.cc.db;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
