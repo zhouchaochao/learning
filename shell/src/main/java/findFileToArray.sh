@@ -1,7 +1,7 @@
 #!/bin/bash
 #将find命令查找到的结果写入数组中
 
-SHELLL_ARRAY=($(find /Users/didi/Tools/scripts/vm -name "to*.sh"| awk '{print $1}'))
+SHELLL_ARRAY=($(find /Users/cc/Tools/scripts/vm -name "to*.sh"| awk '{print $1}'))
 
 
 #通过下标遍历数据
@@ -12,3 +12,6 @@ done;
 
 read -p "请输入选项:" check_item
 echo "通过下标取数组值:${SHELLL_ARRAY[$check_item]}"
+
+
+

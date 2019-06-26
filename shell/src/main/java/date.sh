@@ -60,5 +60,18 @@ else
 fi
 
 
+start_date=$1
+if [ -z ${start_date} ];then
+      start_date=`date --date="-1 day" +%Y-%m-%d`
+fi
+start_date=`date --date="$start_date" +%Y-%m-%d`
+
+end_date=$2
+if [ -z ${end_date} ];then
+      end_date=`date --date="-0 day" +%Y-%m-%d`
+fi
+end_date=`date --date="$end_date" +%Y-%m-%d`
+
+echo $start_date $end_date
 
 
