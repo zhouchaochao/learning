@@ -1,0 +1,19 @@
+mat
+
+1.下载mat https://www.eclipse.org/mat/downloads.php
+选择Mac 版
+
+2.报错
+
+See the log file
+/Users/cc/.eclipse/1130568438_macosx_cocoa_x86_64/configuration/1547717968280.log.
+
+找到解决答案
+https://stackoverflow.com/questions/47909239/how-to-run-eclipse-memory-analyzer-on-mac-os
+
+移动mat到应用程序下。OK，可以分析了。
+
+
+jmap -dump:live,format=b,file=/home/hello/chaochao/dump201901112008.hd 1030
+
+
