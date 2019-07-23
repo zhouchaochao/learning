@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Title: InsertInterval
- * Description: InsertInterval  无法提交，系统测试用例代码有问题？
+ * Description: InsertInterval
  * 57. 插入区间
  * https://leetcode-cn.com/problems/insert-interval/
  * Date:  2019/4/16
@@ -28,9 +28,21 @@ public class InsertInterval {
             end = 0;
         }
 
+        public Interval(int[] arr) {
+            start = arr[0];
+            end = arr[1];
+        }
+
         public Interval(int s, int e) {
             start = s;
             end = e;
+        }
+
+        public int[] toArr() {
+            int[] arr = new int[2];
+            arr[0] = start;
+            arr[1] = end;
+            return arr;
         }
 
         public int getStart() {
@@ -68,6 +80,20 @@ public class InsertInterval {
         intervals.add(new Interval(12, 16));
         newInterval = new Interval(4, 8);
         System.out.println(JSON.toJSONString(new InsertInterval().insert(intervals, newInterval)));
+    }
+
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        List<Interval> originalData = new ArrayList<>(intervals.length);
+        for (int i = 0; i < intervals.length; i++) {
+            originalData.add(new Interval(intervals[i]));
+        }
+        Interval toBeInsert = new Interval(newInterval);
+        List<Interval> intervalList = insert(originalData, toBeInsert);
+        int[][] returnData = new int[intervalList.size()][];
+        for (int i = 0; i < intervalList.size(); i++) {
+            returnData[i] = intervalList.get(i).toArr();
+        }
+        return returnData;
     }
 
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
