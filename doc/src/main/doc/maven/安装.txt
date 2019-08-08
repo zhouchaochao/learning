@@ -9,3 +9,32 @@ export PATH=$MAVEN_HOME/bin:$PATH
 4.source /etc/profile
 5.mvn -version
 
+
+https://maven.apache.org/download.cgi
+下载maven包
+apache-maven-3.5.2-bin.zip
+解压
+
+mv apache-maven-3.5.2 /Users/dd/Applications/
+
+
+vim /Users/dd/.bash_profile
+添加如下：
+MAVEN_HOME=/Users/dd/Applications/apache-maven-3.5.2
+PATH=$MAVEN_HOME/bin:$PATH
+export MAVEN_HOME
+export PATH
+
+保存，退出
+dddeMacBook-Pro:~ dd$ source /Users/dd/.bash_profilee
+dddeMacBook-Pro:~ dd$ mvn -v
+Apache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d; 2017-10-18T15:58:13+08:00)
+Maven home: /Users/dd/Applications/apache-maven-3.5.2
+Java version: 1.8.0_152, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home/jre
+Default locale: zh_CN, platform encoding: UTF-8
+OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
+dddeMacBook-Pro:~ dd$
+
+
+http://www.jianshu.com/p/191685a33786

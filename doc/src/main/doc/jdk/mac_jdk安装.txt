@@ -1,0 +1,46 @@
+
+jdk安装
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+下载
+jdk-8u152-macosx-x64.dmg
+
+查看javahome
+localhost:bin dd$ /usr/libexec/java_home -V
+
+Matching Java Virtual Machines (1):
+
+    1.8.0_152, x86_64: "Java SE 8" /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+
+
+/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+
+
+
+设置环境变量
+http://blog.csdn.net/done58/article/details/51138057
+https://www.cnblogs.com/web-fengmin/p/6582760.html
+
+localhost:~ dd$ vim .bash_profile
+输入以下内容
+VA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+CLASSPAHT=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+PATH=$JAVA_HOME/bin:$PATH:
+export JAVA_HOME
+export CLASSPATH
+export PATH
+
+localhost:~ dd$ cat .bash_profile
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+CLASSPAHT=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+PATH=$JAVA_HOME/bin:$PATH:
+export JAVA_HOME
+export CLASSPATH
+export PATH
+
+
+localhost:~ dd$ echo $JAVA_HOME
+localhost:~ dd$ source ~/.bash_profile
+localhost:~ dd$ echo $JAVA_HOME
+/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+
