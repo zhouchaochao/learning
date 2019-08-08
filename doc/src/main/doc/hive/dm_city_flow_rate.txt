@@ -1,0 +1,31 @@
+use fu;
+CREATE EXTERNAL TABLE `dm_a`(
+`create_time` string COMMENT '创建时间',
+`business_type` bigint COMMENT '业务线',
+`business_type_name` string COMMENT '业务线名称',
+`a` bigint COMMENT 'sc',
+`a` string COMMENT 'sc名称',
+`a` bigint COMMENT '城市ID',
+`a` string COMMENT '城市名称',
+`a` bigint COMMENT 'zn渠道解决问题数',
+`a` bigint COMMENT 'zn渠道服务问题数',
+`a` bigint COMMENT '人工进线量',
+`a` bigint COMMENT '在线人工进线量量',
+`a` bigint COMMENT '话务人工进线量',
+`a` bigint COMMENT '在线机器人解决问题数',
+`a` bigint COMMENT '在线机器人服务问题数',
+`a` bigint COMMENT '问题数',
+`a` bigint COMMENT '问题数')
+COMMENT 'zn'
+PARTITIONED BY (
+  `year` string COMMENT '年',
+  `month` string COMMENT '月',
+  `day` string COMMENT '日')
+STORED AS ORC
+LOCATION
+'/user/cc/whouse/dm_city'
+TBLPROPERTIES (
+  'LEVEL'='0',
+  'TTL'='1000')
+
+

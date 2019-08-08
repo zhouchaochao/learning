@@ -2,15 +2,14 @@ Hive
 
 
 我的第一条sql:
-select * from kefu.dwm_kefu_smart_analysis_statistics where concat_ws('-',year,month,day)='2017-11-11' limit 10
-
+select * from fu.dwm_fu_smart_analysis_statistics where concat_ws('-',year,month,day)='2017-11-11' limit 10
 
 
 查询语句例子：
 SELECT
     '2017-11-20' as create_time,
-    business_type,
-    business_type_name,
+    a,
+    a,
     issued_count,
     satisfaction_count/participatin_count as satisfaction_rate,
     participatin_count/issued_count as participatin_rate,
@@ -19,7 +18,7 @@ SELECT
     meiyouzhaodaorengongfuwu,
     '2017-11-20' as stat_date
 FROM
-    kefu.dwm_intelligent_satisfaction_statistics
+    fu.dwm_intelligent_satisfaction_statistics
 WHERE concat_ws('-',year,month,day)='2017-11-20';
 
 
@@ -323,8 +322,8 @@ value1  _c1
 ===============
 
 删除hive分区
-alter table kefu.dm_kefu_ivr_lost_rate drop PARTITION(year='2017');
-alter table kefu.dm_kefu_ivr_lost_rate drop PARTITION(year='2018',month='01',day='01');
+alter table fu.dm_fu_rvi_lost_rate drop PARTITION(year='2017');
+alter table fu.dm_fu_rvi_lost_rate drop PARTITION(year='2018',month='01',day='01');
 
 
 

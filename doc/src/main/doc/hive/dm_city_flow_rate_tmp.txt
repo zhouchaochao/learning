@@ -1,0 +1,22 @@
+use fu;
+CREATE EXTERNAL TABLE `dm_temp`(
+  `create_time` string COMMENT '创建时间',
+  `a` bigint COMMENT '业务线',
+  `a` bigint COMMENT 'sc',
+  `a` bigint COMMENT '城市ID',
+  `count1` bigint COMMENT '解决问题数',
+  `count2` bigint COMMENT '服务问题数')
+COMMENT 'zn分流比'
+PARTITIONED BY (
+  `year` string COMMENT '年',
+  `month` string COMMENT '月',
+  `day` string COMMENT '日',
+  `ITEM_KEY` string COMMENT 'allrvi')
+STORED AS ORC
+LOCATION
+'/user/cc/whouse/dm_temp'
+TBLPROPERTIES (
+  'LEVEL'='0',
+  'TTL'='1000')
+
+

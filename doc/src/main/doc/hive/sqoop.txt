@@ -1,0 +1,83 @@
+
+CREATE TABLE `dwm_a` (
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `rviid` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'rviid',
+  `pass` int(11) NOT NULL DEFAULT '0' COMMENT '经过量',
+  `hangup` int(11) NOT NULL DEFAULT '0' COMMENT '挂断量',
+  `torvi` int(11) NOT NULL DEFAULT '0' COMMENT 'torvi量',
+  `toagent` int(11) NOT NULL DEFAULT '0' COMMENT '转人工量',
+  `statistics_date` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '数据的时间，精确到小时',
+  PRIMARY KEY (`id`),
+  KEY `idx_rviid` (`rviid`),
+  KEY `idx_statistics_date` (`statistics_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='rvi流量分布';
+
+
+
+CREATE TABLE `rvi_a` (
+  `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `rvi_flag` varchar(24) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'rvi版本，1.0，2.0',
+  `customer_type` int(11) NOT NULL DEFAULT '0' COMMENT 'sc类型',
+  `business_type` int(11) NOT NULL DEFAULT '0' COMMENT '业务线类型',
+  `tree_content` TEXT CHARACTER SET utf8 COLLATE utf8_bin COMMENT '请求接口返回的rvi树的内容',
+  `signature` varchar(128) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '根据内容生成的签名',
+  `version_timestamp` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00' COMMENT '数据的时间，精确到小时',
+  PRIMARY KEY (`id`),
+  KEY `idx_version_timestamp` (`version_timestamp`),
+  KEY `idx_signature` (`signature`),
+  KEY `idx_customer_type_business_type` (`customer_type`,`business_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='rvi流量分布';
+
+
+INSERT into `dwm_a` (`rviid`,`pass`,`hangup`,`torvi`,`toagent`,`statistics_date`) VALUES ('rvi2',1,2,3,4,'2018-05-14 10:00:00');
+
+
+#接受参数格式：年月日时 20190101
+#天维度
+
+echoLog(){
+    FILENAME=$0; echo $1;echo $1 >> ${FILENAME%.sh}".log"
+}
+
+source /etc/profile
+
+#从这个表读取数据
+HIVE_TABLE='dwm_a'
+
+DB_URL="jdbc:mysql://1.2.3.4:40000/o_p?useUnicode=true&characterEncoding=UTF8"
+DB_USERNAME="a"
+DB_PASSWORD="b@b"
+DB_TABLE="dwm_a"
+DB_COLUMNS="nodeid,pass,hangup,torvi,toagent,statistics_date"
+
+v_p_DATE=$1
+if [ -z ${v_p_DATE} ];then
+  v_p_DATE=`date --date="0 day" '+%Y%m%d'`
+fi
+
+if [ 8 -ne ${#v_p_DATE} ];then
+    echoLog "时间格式不对。格式：yyyyMMdd.举例：20190101"
+    exit 1;
+fi
+
+log="数据日期:$v_p_DATE"
+echoLog "$log"
+
+V_YEAR_OF_DATE=${v_p_DATE:0:4}
+V_MONTH_OF_DATE=${v_p_DATE:4:2}
+V_DAY_OF_DATE=${v_p_DATE:6:2}
+V_HOUR_OF_DATE=00
+
+EXPORT_DIR=/user/cc/whouse/${HIVE_TABLE}/year=${V_YEAR_OF_DATE}/month=${V_MONTH_OF_DATE}/day=${V_DAY_OF_DATE}/hour=${V_HOUR_OF_DATE}
+echoLog "EXPORT_DIR:${EXPORT_DIR}"
+
+#sqoop只能使用 root.dataplatform-offline_dev_sqoop 这个队列
+sqoop export -D mapred.job.queue.name=root.dataplatform_sqoop --connect ${DB_URL} --table ${DB_TABLE}  --username ${DB_USERNAME}  --password ${DB_PASSWORD} --export-dir ${EXPORT_DIR} --fields-terminated-by '\t' --columns=${DB_COLUMNS} --input-null-string '\\N' --input-null-non-string '\\N';
+
+exit 0;
+
+
+
+
+
+
