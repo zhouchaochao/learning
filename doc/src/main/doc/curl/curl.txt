@@ -1,0 +1,22 @@
+
+
+curl -XGET http://hello.com/mock/get
+
+curl -XGET --header 'Authorization:Basic abcsewdsw' 'http://1.2.3.11:8000/a/a/b/get/a?customerType=1&customerId=1&source=op&dict='
+
+curl -H 'Authorization:Basic ab==' -XGET 'http://1.2.3.4:8000/a/api/a/order/details?source=op&orderIds=1'
+
+curl -XPOST --header 'content-type: application/json' 'http://a.b.com/c/a/a/a/b/a' -d '{"ss_head":{"version":"1.0.0","oid":"a","ts_id":"2","ts_channel":"11"},"ss_body":{"uid":"a"}}'
+
+curl -XPOST --header 'Authorization:Basic abd==' --header 'content-type: application/json' 'http://1.2.3.4:8031/sensWord/c' -d '{"source":"ak","content":"helllo，拒绝黄赌毒。"}'
+
+#文件上传
+curl http://1.2.3.4:8050/resource/anything/angry.jpg -X POST -F filecontent=@angry.jpg
+
+curl --request POST \
+  --url 'http://a.b.com/crm/index.php?r=o' \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data 'order_id=123';
+
+
