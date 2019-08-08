@@ -1,5 +1,5 @@
 #!/bin/bash
-cd kefu-hive-shell/
+cd fu-hive-shell/
 git fetch --all
 git reset --hard origin/master
 git pull

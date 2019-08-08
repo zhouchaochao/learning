@@ -1,0 +1,8 @@
+public String f() {
+    try {
+
+    } catch (Exception e) {
+        LOGGER.error("errorMessage={}",e.getMessage(), e);
+    }
+    return null;
+}

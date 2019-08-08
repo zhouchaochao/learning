@@ -1,29 +1,29 @@
 
 Hadoop统计文件个数
-hadoop fs -ls -R /user/cs/warehouse/edw_kefu_call_queue_hour_detail|grep "^-"|wc -l
+hadoop fs -ls -R /user/cc/whouse/edw_fu_call_queue_hour_detail|grep "^-"|wc -l
 
 内蒙统计文件个数：
-hadoop fs -ls -R /user/cs/warehouse/edw_kefu_call_queue_hour_detail|grep "^-"|wc -l
+hadoop fs -ls -R /user/cc/whouse/edw_fu_call_queue_hour_detail|grep "^-"|wc -l
 873
-hadoop fs -ls -R /user/cs/warehouse/edw_kefu_call_queue_15_minute_detail|grep "^-"|wc -l
+hadoop fs -ls -R /user/cc/whouse/edw_fu_call_queue_15_minute_detail|grep "^-"|wc -l
 486
-hadoop fs -ls -R /user/cs/warehouse/dm_intelligent_satisfaction_common_report|grep "^-"|wc -l
+hadoop fs -ls -R /user/cc/whouse/dm_intelligent_satisfaction_common_report|grep "^-"|wc -l
 0
-hadoop fs -ls -R /user/cs/warehouse/dwm_intelligent_satisfaction_statistics|grep "^-"|wc -l
+hadoop fs -ls -R /user/cc/whouse/dwm_intelligent_satisfaction_statistics|grep "^-"|wc -l
 3184 3212
-hadoop fs -ls -R /user/cs/warehouse/edw_r_queue_day|grep "^-"|wc -l
+hadoop fs -ls -R /user/cc/whouse/edw_r_queue_day|grep "^-"|wc -l
 1754
-hadoop fs -ls -R /user/cs/warehouse/dwm_entry_rengong_cell|grep "^-"|wc -l
+hadoop fs -ls -R /user/cc/whouse/dwm_entry_rengong_cell|grep "^-"|wc -l
 1691
 
 
 hdfs_put.sh 上传文件到hdfs
 #!/bin/bash
 
-PROJECT_HDFS_PATH='/user/cs/kefu-hive-shell'
+PROJECT_HDFS_PATH='/user/cc/fu-hive-shell'
 #危险操作
 hadoop fs -rm -r -f $PROJECT_HDFS_PATH
-hadoop fs -put -f /home/cephVolume/data-ide/workspace/zhouchaochao/kefu-hive-shell  $PROJECT_HDFS_PATH
+hadoop fs -put -f /home/cephVolume/data-ide/workspace/zhouchaochao/fu-hive-shell  $PROJECT_HDFS_PATH
 
 echo "hadoop fs -ls $PROJECT_HDFS_PATH"
 hadoop fs -ls $PROJECT_HDFS_PATH

@@ -1,0 +1,5 @@
+try {
+    $END$
+} catch (Exception e) {
+    LOGGER.error("errorMessage={}",e.getMessage(), e);
+}

@@ -4,9 +4,7 @@
 ###################
 
 declare -a dic
-#dic=([00]="uemc-ivr-srv00.gz01" [01]="uemc-ivr-srv01.gz01" [02]="uemc-ivr-srv02.gz01" [03]="uemc-ivr-srv03.gz01" [04]="uemc-robot-srv00.gz01" [05]="uemc-robot-srv01.gz01")
-
-#dic=([hive]="bigdata-hive-client05.xg01" [pg]="uemc-gpdb-db00.gz01")
+#dic=([00]=".gz01" [01]="b.gz01" [02]="c.gz01" [03]="d.gz01" [04]="a.gz01" [05]="a.gz01")
 
 
 #target=$1
@@ -32,12 +30,12 @@ options="-p35000"
 password="helloWorld"
 #echo "please input online code"
 #read code
-code=`/Users/cc/Tools/scripts/vm/genCode OS3P7OAB4L53QCSE`
+code=`/Users/cc/Tools/scripts/vm/genCode abc`
 fi
 
 if [ "x"$target == "xmyself"  ];
 then
-host="10.94.100.100"
+host="1.2.3.100"
 user="root"
 password="root"
 fi

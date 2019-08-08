@@ -185,13 +185,13 @@ select cc_complexExample_udf(array('a','b','c'),'a');
 2.正式环境创建永久函数
 
 将jar包上传到hdfs上
-hadoop fs -put -f ~/zhouchaochao/udf/hive-udf-1.0-SNAPSHOT201807181048.jar /user/cs/jar
-对应的全路径为：hdfs://D————Cluster————Nmg4/user/cs/jar/hive-udf-1.0-SNAPSHOT201807181048.jar
+hadoop fs -put -f ~/zhouchaochao/udf/hive-udf-1.0-SNAPSHOT201807181048.jar /user/cc/jar
+对应的全路径为：hdfs://D————Cluster————Nmg4/user/cc/jar/hive-udf-1.0-SNAPSHOT201807181048.jar
 
 
 创建永久函数
 hive>
-CREATE FUNCTION cc_duplicate_removal_udf AS 'com.cc.DuplicateRemovalUDF' USING JAR 'hdfs://DClusterNmg4/user/cs/jar/hive-udf-1.0-SNAPSHOT201807181048.jar';
+CREATE FUNCTION cc_duplicate_removal_udf AS 'com.cc.DuplicateRemovalUDF' USING JAR 'hdfs://DClusterNmg4/user/cc/jar/hive-udf-1.0-SNAPSHOT201807181048.jar';
 
 然后就可以在任何地方使用函数 cc_duplicate_removal_udf 了。
 
