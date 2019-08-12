@@ -44,3 +44,34 @@ localhost:~ dd$ source ~/.bash_profile
 localhost:~ dd$ echo $JAVA_HOME
 /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
 
+
+
+20190812
+==================
+MAC安装JDK及环境变量配置https://blog.csdn.net/vvv_110/article/details/72897142
+
+下载安装jdk1.8后
+ls /Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/
+
+cd ~
+vim .bash_profile
+写入以下配置
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/
+PATH=$JAVA_HOME/bin:$PATH:.
+CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar
+export JAVA_HOME
+export PATH
+export CLASSPATH
+保存配置
+
+source .bash_profile
+
+echo $JAVA_HOME
+/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/ 
+
+java -version
+java version "1.8.0_151"
+Java(TM) SE Runtime Environment (build 1.8.0_151-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.151-b12, mixed mode)
+
+OK
