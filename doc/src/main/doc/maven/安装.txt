@@ -38,3 +38,38 @@ dddeMacBook-Pro:~ dd$
 
 
 http://www.jianshu.com/p/191685a33786
+
+
+20190812
+====================
+Mac 下安装Maven 环境 https://blog.csdn.net/u011619283/article/details/56671530
+
+到这里 http://maven.apache.org/download.cgi 下载apache-maven-3.6.1-bin.tar.gz
+双击解压后
+ls /Users/cc/Downloads/apache-maven-3.6.1/
+
+移动到
+mv /Users/cc/Downloads/apache-maven-3.6.1 /usr/local/
+如果没有权限前面加sudo
+
+cd ~
+vim .bash_profile
+export M3_HOME=/usr/local/apache-maven-3.6.1
+export PATH=$M3_HOME/bin:$PATH
+
+source .bash_profile
+
+mvn -version
+Apache Maven 3.6.1 (d66c9c0b3152b2e69ee9bac180bb8fcc8e6af555; 2019-04-05T03:00:29+08:00)
+Maven home: /usr/local/apache-maven-3.6.1
+Java version: 1.8.0_151, vendor: Oracle Corporation, runtime: /Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/jre
+Default locale: zh_CN, platform encoding: UTF-8
+OS name: "mac os x", version: "10.14.2", arch: "x86_64", family: "mac"
+
+安装公司要求修改maven私服配置：
+vim /usr/local/apache-maven-3.6.1/conf/settings.xml
+
+在idea中设置maven的home路径：
+/usr/local/apache-maven-3.6.1
+并且设置maven的setting file，然后勾选override:
+/usr/local/apache-maven-3.6.1/conf/settings.xml
