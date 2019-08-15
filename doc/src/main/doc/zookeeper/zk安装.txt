@@ -1,0 +1,67 @@
+
+参考：
+在mac OSX中使用 Homebrew 安装启动zookeeper:
+https://blog.csdn.net/whereismatrix/article/details/50420099
+
+
+//Homebrew 安装
+//Homebrew是一款终端下的命令程序包管理器，安装非常简单，复制如下命令在终端下运行，按回车并输入密码后等待安装成功：
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+使用HomeBrew查看zk的信息
+COMPUTER-CC:logs cc$ brew info zookeeper
+zookeeper: stable 3.4.13 (bottled), HEAD
+
+使用HomeBrew安装zk，执行如下命令就好：
+brew install zookeeper
+
+OK，好了。
+
+安装后，在/usr/local/etc/zookeeper/目录下，已经有了缺省的配置文件。
+COMPUTER-CC:logs cc$ ls /usr/local/etc/zookeeper/
+defaults		zoo.cfg
+log4j.properties	zoo_sample.cfg
+
+可以查看安装目录
+ls /usr/local/Cellar/zookeeper/3.4.13
+
+启动zk
+COMPUTER-CC:logs cc$ zkServer
+ZooKeeper JMX enabled by default
+Using config: /usr/local/etc/zookeeper/zoo.cfg
+Usage: ./zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-cmd}
+
+COMPUTER-CC:logs cc$ zkServer  status
+ZooKeeper JMX enabled by default
+Using config: /usr/local/etc/zookeeper/zoo.cfg
+Error contacting service. It is probably not running.
+
+COMPUTER-CC:logs cc$ zkServer  start
+ZooKeeper JMX enabled by default
+Using config: /usr/local/etc/zookeeper/zoo.cfg
+Starting zookeeper ... STARTED
+
+COMPUTER-CC:logs cc$ zkServer  status
+ZooKeeper JMX enabled by default
+Using config: /usr/local/etc/zookeeper/zoo.cfg
+Mode: standalone
+
+
+用客户端连接看看：
+COMPUTER-CC:logs cc$ zkCli
+Connecting to localhost:2181
+Welcome to ZooKeeper!
+JLine support is enabled
+
+WATCHER::
+
+WatchedEvent state:SyncConnected type:None path:null
+
+[zk: localhost:2181(CONNECTED) 0] ls /
+[zookeeper]
+[zk: localhost:2181(CONNECTED) 1]
+
+ps看看
+COMPUTER-CC:logs cc$ ps -ef|grep zook
+  502 14045     1   0  7:54下午 ttys000    0:00.73 /Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home//bin/java -Dzookeeper.log.dir=. -Dzookeeper.root.logger=INFO,CONSOLE -cp /usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../build/classes:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../build/lib/*.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/slf4j-log4j12-1.7.25.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/slf4j-api-1.7.25.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/netty-3.10.6.Final.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/log4j-1.2.17.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/jline-0.9.94.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/audience-annotations-0.5.0.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../zookeeper-3.4.13.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../src/java/lib/*.jar:/usr/local/etc/zookeeper:.:/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home//lib/tools.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home//lib/dt.jar -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false org.apache.zookeeper.server.quorum.QuorumPeerMain /usr/local/etc/zookeeper/zoo.cfg
+
