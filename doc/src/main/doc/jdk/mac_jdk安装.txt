@@ -21,9 +21,10 @@ Matching Java Virtual Machines (1):
 http://blog.csdn.net/done58/article/details/51138057
 https://www.cnblogs.com/web-fengmin/p/6582760.html
 
+localhost:~ dd$ cd ~
 localhost:~ dd$ vim .bash_profile
 输入以下内容
-VA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
 CLASSPAHT=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 PATH=$JAVA_HOME/bin:$PATH:
 export JAVA_HOME
