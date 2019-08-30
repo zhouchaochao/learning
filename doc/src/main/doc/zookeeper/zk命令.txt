@@ -1,0 +1,24 @@
+
+
+查看节点目录
+ls /test
+
+创建持久节点
+create /test testdata
+
+创建临时节点&数据
+create -e /idice/vip_worksheet_cron/a '0/30 * * * * ?'
+
+查看数据
+get /idice/vip_worksheet_cron/a
+
+设置数据
+set /test newdata
+
+删除节点
+delete /test
+
+删除包含子节点的节点
+rmr /testHasChild
+
+

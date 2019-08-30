@@ -31,20 +31,29 @@ ZooKeeper JMX enabled by default
 Using config: /usr/local/etc/zookeeper/zoo.cfg
 Usage: ./zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-cmd}
 
+查看状态
 COMPUTER-CC:logs cc$ zkServer  status
 ZooKeeper JMX enabled by default
 Using config: /usr/local/etc/zookeeper/zoo.cfg
 Error contacting service. It is probably not running.
 
+启动
 COMPUTER-CC:logs cc$ zkServer  start
 ZooKeeper JMX enabled by default
 Using config: /usr/local/etc/zookeeper/zoo.cfg
 Starting zookeeper ... STARTED
 
+查看状态
 COMPUTER-CC:logs cc$ zkServer  status
 ZooKeeper JMX enabled by default
 Using config: /usr/local/etc/zookeeper/zoo.cfg
 Mode: standalone
+
+暂停
+COMPUTER-CC:logs cc$ zkServer  stop
+ZooKeeper JMX enabled by default
+Using config: /usr/local/etc/zookeeper/zoo.cfg
+Stopping zookeeper ... STOPPED
 
 
 用客户端连接看看：
