@@ -26,3 +26,15 @@ ls -a
 git clone -b apply wheeljack-web.git
 //从远端clone apply分支到本地。
 
+添加文件到本地Git管理
+git add 文件名
+
+查看项目已发生过新建或者修改的文件
+git status
+
+撤销git的add操作
+git reset 文件名
+
+
+
+

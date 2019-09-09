@@ -1,0 +1,37 @@
+
+使用命令git branch -a 查看所有分支
+使用命令 git push origin --delete Chapater6   可以删除远程分支Chapater6
+使用命令，git branch -d Chapater8 可以删除本地分支（在主分支中）
+
+
+切换到master分支
+IT-C02Z1186LVDL:nebula-rpc cc$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+IT-C02Z1186LVDL:nebula-rpc cc$ git branch
+* master
+  yuhu_test_0909
+IT-C02Z1186LVDL:nebula-rpc cc$ git branch -a
+* master
+  yuhu_test_0909
+  remotes/origin/HEAD -> origin/master
+
+删除远程分支
+IT-C02Z1186LVDL:nebula-rpc cc$ git push origin --delete yuhu_test_0909
+To gitlab.alibaba-inc.com:nebula-rpc/nebula-rpc.git
+ - [deleted]           yuhu_test_0909
+IT-C02Z1186LVDL:nebula-rpc cc$ git branch
+* master
+  yuhu_test_0909
+IT-C02Z1186LVDL:nebula-rpc cc$ git branch -a
+* master
+  yuhu_test_0909
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/adcode_pub
+  remotes/origin/bus_lib
+
+删除本地分支
+IT-C02Z1186LVDL:nebula-rpc cc$ git branch -D yuhu_test_0909
+    Deleted branch yuhu_test_0909 (was a2fec59b).
+IT-C02Z1186LVDL:nebula-rpc cc$ git branch
+* master
