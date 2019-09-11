@@ -1,0 +1,37 @@
+
+1.安装ruby
+$sudo yum install ruby
+查看版本：
+[admin@MACHINE /data/workspace/yuhu/soft]
+$ruby -v
+ruby 2.0.0p598 (2014-11-13) [x86_64-linux]
+
+
+2.使用ruby安装HomeBrew
+
+[admin@MACHINE /data/workspace/yuhu/soft]
+$ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  To install Linuxbrew, paste at a terminal prompt:
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+[admin@MACHINE /data/workspace/yuhu/soft]
+$sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+==> Installing Ruby to /home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/vendor
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+100 26.9M  100 26.9M    0     0  3372k      0  0:00:08  0:00:08 --:--:-- 8392k
+==> Installing successful
+
+
+3.配置环境变量
+[admin@MACHINE /data/workspace/yuhu/soft]
+$echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.bash_profile
+
+[admin@MACHINE /data/workspace/yuhu/soft]
+$source ~/.bash_profile
+
+4.测试
+[admin@MACHINE /data/workspace/yuhu/soft]
+$brew install hello
+
