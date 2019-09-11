@@ -1,0 +1,167 @@
+
+使用HomeBrew安装MySQL
+IT-C02Z1186LVDL:~ cc$ brew info mysql@5.7
+mysql@5.7: stable 5.7.27 (bottled) [keg-only]
+Open source relational database management system
+https://dev.mysql.com/doc/refman/5.7/en/
+Not installed
+From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/mysql@5.7.rb
+==> Dependencies
+Build: cmake ✘
+Required: openssl ✔
+==> Caveats
+We've installed your MySQL database without a root password. To secure it run:
+    mysql_secure_installation
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run:
+    mysql -uroot
+
+mysql@5.7 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+
+To have launchd start mysql@5.7 now and restart at login:
+  brew services start mysql@5.7
+Or, if you don't want/need a background service you can just run:
+  /usr/local/opt/mysql@5.7/bin/mysql.server start
+
+
+安装
+IT-C02Z1186LVDL:~ cc$ brew install mysql@5.7
+Updating Homebrew...
+==> Auto-updated Homebrew!
+==> Pouring mysql@5.7-5.7.27.mojave.bottle.tar.gz
+==> /usr/local/Cellar/mysql@5.7/5.7.27/bin/mysqld --initialize-insecure --user=cc --basedir=/usr/local/Cellar/mysql@5.7/5.7.27 --datadir=/usr/local/var/mysql --tmpdir=/tmp
+^@==> Caveats
+We've installed your MySQL database without a root password. To secure it run:
+    mysql_secure_installation
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run:
+    mysql -uroot
+
+mysql@5.7 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+If you need to have mysql@5.7 first in your PATH run:
+  echo 'export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"' >> ~/.bash_profile
+
+For compilers to find mysql@5.7 you may need to set:
+  export LDFLAGS="-L/usr/local/opt/mysql@5.7/lib"
+  export CPPFLAGS="-I/usr/local/opt/mysql@5.7/include"
+
+
+To have launchd start mysql@5.7 now and restart at login:
+  brew services start mysql@5.7
+Or, if you don't want/need a background service you can just run:
+  /usr/local/opt/mysql@5.7/bin/mysql.server start
+==> Summary
+🍺  /usr/local/Cellar/mysql@5.7/5.7.27: 320 files, 232.3MB
+
+
+配置环境变量
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+IT-C02Z1186LVDL:~ cc$ source .bash_profile
+
+启动MySQL
+IT-C02Z1186LVDL:bin cc$ mysql.server start
+Starting MySQL
+. SUCCESS!
+
+IT-C02Z1186LVDL:bin cc$ mysql.server stop
+Shutting down MySQL
+. SUCCESS!
+
+进行安全设置（设置root用户名密码，运行远程连接）
+IT-C02Z1186LVDL:bin cc$ mysql_secure_installation
+
+使用客户端连接（目前只能在本机上通过127.0.0.1，如果需要远程连接，后面还需要配置）
+IT-C02Z1186LVDL:~ cc$ mysql -h 127.0.0.1 -uroot -p123456 -P3306
+
+=====================================================================================
+配置允许远程连接，通过GRANT授权
+$mysql -h localhost -uroot -p123456 -P3306
+
+mysql> use mysql
+
+mysql> select * from user;
++-----------+---------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+| Host      | User          | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Reload_priv | Shutdown_priv | Process_priv | File_priv | Grant_priv | References_priv | Index_priv | Alter_priv | Show_db_priv | Super_priv | Create_tmp_table_priv | Lock_tables_priv | Execute_priv | Repl_slave_priv | Repl_client_priv | Create_view_priv | Show_view_priv | Create_routine_priv | Alter_routine_priv | Create_user_priv | Event_priv | Trigger_priv | Create_tablespace_priv | ssl_type | ssl_cipher | x509_issuer | x509_subject | max_questions | max_updates | max_connections | max_user_connections | plugin                | authentication_string                     | password_expired | password_last_changed | password_lifetime | account_locked |
++-----------+---------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+| localhost | root          | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 | N                | 2019-09-10 15:44:47   |              NULL | N              |
+| localhost | mysql.session | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | Y          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | N                | 2019-09-10 15:32:56   |              NULL | Y              |
+| localhost | mysql.sys     | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | N          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | N                | 2019-09-10 15:32:56   |              NULL | Y              |
++-----------+---------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456';
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from user;
++-----------+---------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+| Host      | User          | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Reload_priv | Shutdown_priv | Process_priv | File_priv | Grant_priv | References_priv | Index_priv | Alter_priv | Show_db_priv | Super_priv | Create_tmp_table_priv | Lock_tables_priv | Execute_priv | Repl_slave_priv | Repl_client_priv | Create_view_priv | Show_view_priv | Create_routine_priv | Alter_routine_priv | Create_user_priv | Event_priv | Trigger_priv | Create_tablespace_priv | ssl_type | ssl_cipher | x509_issuer | x509_subject | max_questions | max_updates | max_connections | max_user_connections | plugin                | authentication_string                     | password_expired | password_last_changed | password_lifetime | account_locked |
++-----------+---------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+| localhost | root          | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 | N                | 2019-09-10 15:44:47   |              NULL | N              |
+| localhost | mysql.session | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | Y          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | N                | 2019-09-10 15:32:56   |              NULL | Y              |
+| localhost | mysql.sys     | N           | N           | N           | N           | N           | N         | N           | N             | N            | N         | N          | N               | N          | N          | N            | N          | N                     | N                | N            | N               | N                | N                | N              | N                   | N                  | N                | N          | N            | N                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE | N                | 2019-09-10 15:32:56   |              NULL | Y              |
+| %         | root          | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | N          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      |          |            |             |              |             0 |           0 |               0 |                    0 | mysql_native_password | *6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9 | N                | 2019-09-10 22:51:01   |              NULL | N              |
++-----------+---------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+-----------------------+-------------------------------------------+------------------+-----------------------+-------------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> exit;
+Bye
+
+上面通过GRANT设置运行远程连接。
+重启。
+
+[admin@MACHINE /data/workspace/yuhu/soft]
+$mysql.server restart
+Shutting down MySQL.... SUCCESS!
+Starting MySQL. SUCCESS!
+
+[admin@MACHINE /data/workspace/yuhu/soft]
+$mysql -h 11.xx.xx.xx -uroot -p123456 -P3306
+
+mysql>
+
+
+OK，重启后可以通过IP连接。
+如果以上还是不行，继续设置配置文件my.cnf
+=====================================================================================
+
+[admin@MACHINE /data/workspace/yuhu/soft]
+$mysql -h 11.xx.xx.xx -uroot -p123456 -P3306
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1130 (HY000): Host 'MACHINE' is not allowed to connect to this MySQL server
+
+
+继续设置配置文件my.cnf运行远程连接。
+找到配置文件位置
+find / -name "my.cnf " 2>/dev/null
+
+$cat /home/linuxbrew/.linuxbrew/etc/my.cnf
+# Default Homebrew MySQL server config
+[mysqld]
+# Only allow connections from localhost
+bind-address = 127.0.0.1
+
+发现最后绑定了127.0.0.1这个IP。注释掉最后一行。
+$vim /home/linuxbrew/.linuxbrew/etc/my.cnf
+
+配置文件也可能在/usr/local/etc/my.cnf,可以通过find找一下。
+
+重启MySQL
+[admin@MACHINE /data/workspace/yuhu/soft]
+$mysql.server restart
+Shutting down MySQL. SUCCESS!
+Starting MySQL. SUCCESS!
+
+使用IP连接，可以了
+[admin@MACHINE /data/workspace/yuhu/soft]
+$mysql -h 11.xx.xx.xx -uroot -p123456 -P3306
