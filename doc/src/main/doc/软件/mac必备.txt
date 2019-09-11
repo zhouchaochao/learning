@@ -8,3 +8,5 @@ switchHosts
 XMind
 Navicat Premium
 Charles
+sequel Pro
+
