@@ -74,3 +74,6 @@ ps看看
 COMPUTER-CC:logs cc$ ps -ef|grep zook
   502 14045     1   0  7:54下午 ttys000    0:00.73 /Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home//bin/java -Dzookeeper.log.dir=. -Dzookeeper.root.logger=INFO,CONSOLE -cp /usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../build/classes:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../build/lib/*.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/slf4j-log4j12-1.7.25.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/slf4j-api-1.7.25.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/netty-3.10.6.Final.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/log4j-1.2.17.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/jline-0.9.94.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../lib/audience-annotations-0.5.0.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../zookeeper-3.4.13.jar:/usr/local/Cellar/zookeeper/3.4.13/libexec/bin/../src/java/lib/*.jar:/usr/local/etc/zookeeper:.:/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home//lib/tools.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home//lib/dt.jar -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false org.apache.zookeeper.server.quorum.QuorumPeerMain /usr/local/etc/zookeeper/zoo.cfg
 
+
+连接远程服务器
+zkCli -server x.x.x.x:2181
