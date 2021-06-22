@@ -35,6 +35,12 @@ git status
 撤销git的add操作
 git reset 文件名
 
+拷贝一个 Git 仓库到本地
+git clone http://gitlab.xxx/abc.git
+
+刷新本地分支列表
+git remote update origin --prune
+
 
 
 
