@@ -1,0 +1,19 @@
+
+lua安装：
+1.执行安装命令
+brew install lua
+
+2.查看版本
+IT-C02Z1186LVDL:~ cc$ lua -v
+Lua 5.4.3  Copyright (C) 1994-2021 Lua.org, PUC-Rio
+
+3.编写脚本HelloWorld.lua
+内容：
+print("Hello World!")
+
+4.执行脚本
+IT-C02Z1186LVDL:src cc$ lua HelloWorld.lua
+Hello World!
+
+参考：https://www.runoob.com/lua/lua-environment.html
+
