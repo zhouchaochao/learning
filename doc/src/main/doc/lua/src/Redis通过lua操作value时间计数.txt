@@ -1,0 +1,242 @@
+
+
+记录一个用户对于多个业务线code的计数，按照如下kv格式记录
+key1   ->  code1;5;code2;5;code3;9;
+
+可以通过脚本对code2对应的值进行+1，结果变成：
+key1   ->  code1;5;code2;6;code3;9;
+
+
+脚本定义如下:
+  local list=redis.call("get",KEYS[1])
+  if not list then list='' end
+  local codePer=ARGV[1]..";"
+  local result
+  local index=1
+  for word in string.gmatch(list,"%w+;%d+;")
+  do
+    local x,y=string.find(word,codePer)
+    if x==1
+      then
+        result=string.sub(list,1,index-1)..ARGV[1]..";"..string.format("%d",string.match(word, "%d+",y+1)+1)..";"..string.sub(list,index+string.len(word))
+        break
+      end
+    index=index+string.len(word)
+  end
+
+  if not result then result=list..ARGV[1]..";1;" end
+  redis.call("set",KEYS[1],result,"EX",ARGV[2])
+  return result
+
+
+记录业务频次的方法如下：
+String script = ".....";
+jedisCluster.eval(script, 1, "adiu1", "110000", "3600");
+
+
+//为了避免每次请求都携带很长的script数据，可以把script提前加载到Redis服务器中去，后面通过evalsha函数指定脚本执行。
+String script = ".....";
+String scriptKey = "eventCount";
+
+// 脚本校验和，只需要加载一次就会一直存在redis中。重复加载返回同样的校验和。
+String sha1 = jedisCluster.scriptLoad(script, scriptKey);
+System.out.println("sha1:" + sha1);
+
+jedisCluster.evalsha(sha1, 1, adiu, "aa", "60");
+System.out.println("redis value:" + jedisCluster.get(adiu));
+
+
+
+    @Test
+    public void casTest() {
+        try {
+            String rdbKey = "test07231052";
+            int expireSeconds = 60;
+
+            String setResult = rdb3Cache.set(rdbKey, "1", SetParams.setParams().ex(expireSeconds).nx());
+            System.out.println("setResult:" + setResult);
+
+            setResult = rdb3Cache.set(rdbKey, "110000;1;");
+            System.out.println("setResult:" + setResult);
+
+            String script = "if redis.call(\"get\", KEYS[1]) == ARGV[1] then\n"
+                + "    redis.call(\"set\", KEYS[1], ARGV[2])\n"
+                + "    return 1\n"
+                + "else\n"
+                + "    return 0\n"
+                + "end";
+            String oldValue = "110000;1;";
+            String newValue = "NEW_VALUE";
+
+            Object casResult = rdb3Cache.eval(script, 1, rdbKey, oldValue, newValue);
+            System.out.println("casResult:" + casResult);
+
+            casResult = rdb3Cache.eval(script, 1, rdbKey, oldValue, newValue);
+            System.out.println("casResult:" + casResult);
+
+            String getResult = rdb3Cache.get(rdbKey);
+            System.out.println("getResult:" + getResult);
+        } catch (Exception e) {
+            logger.error("errorMessage={}", e.getMessage(), e);
+        }
+    }
+
+
+    @Test
+    public void luaScriptGetSetExpireTest() {
+        try {
+            String rdbKey = "test07231901";
+            int expireSeconds = 60;
+
+            String script = "local result = redis.call(\"get\", KEYS[1])\n"
+                + "if (not result) then result = 'empty' end return result";
+
+            Object getResult = rdb3Cache.eval(script, 1, rdbKey);
+            System.out.println("getResult:" + getResult);
+
+            script = "return redis.call(\"set\", KEYS[1], ARGV[1],\"EX\",ARGV[2])\n";
+
+            Object setResult = rdb3Cache.eval(script, 1, rdbKey, "hello", String.valueOf(expireSeconds));
+            System.out.println("setResult:" + setResult);
+
+            script = "local result = redis.call(\"get\", KEYS[1])\n"
+                + "if (not result) then result = 'empty' end return result";
+
+            getResult = rdb3Cache.eval(script, 1, rdbKey);
+            System.out.println("getResult:" + getResult);
+
+            Thread.sleep((expireSeconds + 1) * 1000);
+
+            getResult = rdb3Cache.get(rdbKey);
+            System.out.println("after expire getResult:" + getResult);
+
+        } catch (Exception e) {
+            logger.error("errorMessage={}", e.getMessage(), e);
+        }
+    }
+
+
+
+    @Test
+    public void luaScriptEventCountTest() {
+        try {
+            String rdbKey = "test07261446";
+            String scriptKey = "eventCount";
+            int expireSeconds = 20;
+            System.out.println(SCRIPT);
+
+            // 脚本校验和
+            String sha1 = rdb3Cache.scriptLoad(SCRIPT, scriptKey);
+            System.out.println("sha1:" + sha1);
+
+            long start = System.currentTimeMillis();
+            String expireTime = "60";
+            String adiu = "ibllhi76gf66dgelqcccce99f5aee0";
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "110000", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "110000", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "120000", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "120000", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "110000", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "11", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "1", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "1", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "11", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "11", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "a", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.eval(SCRIPT, 1, adiu, "a", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.evalsha(sha1, 1, adiu, "aa", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.evalsha(sha1, 1, adiu, "aa", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.evalsha(sha1, 1, adiu, "aa", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            rdb3Cache.evalsha(sha1, 1, adiu, "a", expireTime);
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+
+            System.out.println("elapse:" + (System.currentTimeMillis() - start));
+        } catch (Exception e) {
+            logger.error("errorMessage={}", e.getMessage(), e);
+        }
+    }
+
+
+
+    CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(5);
+    /**
+     * 并发测试
+     */
+    //@Test
+    public void luaScriptEventCountMultiThreadTest() {
+        try {
+            String adiu = "ibllhi76gf66dgelqcccce99f5aee1";
+            /**
+             * 启动5个线程并发对5个业务线进行访问计数
+             */
+            for (int i = 0; i < 5; i++) {
+                new VisitTask(adiu, "code" + i, 100).start();
+            }
+
+            COUNT_DOWN_LATCH.await();
+            System.out.println("redis value:" + rdb3Cache.get(adiu));
+        } catch (Exception e) {
+            logger.error("errorMessage={}", e.getMessage(), e);
+        }
+    }
+
+    private class VisitTask extends Thread {
+
+        private String adiu;
+        private String code;
+        private Integer visitTimes;
+
+        public VisitTask(String adiu, String code, Integer visitTimes) {
+            this.adiu = adiu;
+            this.code = code;
+            this.visitTimes = visitTimes;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("start:" + code);
+            for (int i = 0; i < visitTimes; i++) {
+                rdb3Cache.eval(SCRIPT, 1, adiu, code, "600");
+            }
+            COUNT_DOWN_LATCH.countDown();
+            System.out.println("end:" + code);
+        }
+    }
+
+
+
+
+
+
+
