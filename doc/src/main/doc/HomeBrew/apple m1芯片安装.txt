@@ -1,0 +1,23 @@
+
+参考：
+https://brew.idayer.com/guide/m1/
+
+直接执行：
+/bin/bash -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install.sh)"
+
+然后还需设置环境变量，具体操作步骤如下，一定要仔细阅读。
+
+在终端执行命令echo $SHELL获得终端类型：
+/bin/zsh => zsh => .zprofile
+/bin/bash => bash => .bash_profile
+如果看到的是/bin/zsh
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+如果看到的是/bin/bash
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bash_profile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+从macOS Catalina(10.15.x) 版开始，Mac使用zsh作为默认Shell。
+
+最后结果是 ~/.bash_profile 中加了这么一行。
+eval "$(/opt/homebrew/bin/brew shellenv)"
