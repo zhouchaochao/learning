@@ -7,7 +7,9 @@ import util.PropertyUtil;
 import java.io.*;
 import java.net.URI;
 import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Title: ReadFileMethod 读文件方法
@@ -43,18 +45,18 @@ public class ReadFileMethod {
             logger.info("isDirectory");
         } else {
             logger.info("not isDirectory");
-            dir.mkdirs();//可以创建多级目录。如果父目录不存在，创建。
+            //dir.mkdirs();//可以创建多级目录。如果父目录不存在，创建。
             //dir.mkdir();//只能创建一级新目录。如果父目录不存在，失败。
         }
 
 
         //readFileByBytes(fileName);
         //readFileByChars(fileName);
-        //readFileByLines(fileName);
+        readFileByLines(fileName);
         //readFileByRandomAccess(fileName);
-        readTxtFile(fileName);
+        //readTxtFile(fileName);
 
-        createPathFile("C:/Users/zhouchaochao/1/2/createPathFile1.txt");
+        //createPathFile("C:/Users/zhouchaochao/1/2/createPathFile1.txt");
     }
 
     /**
@@ -206,33 +208,18 @@ public class ReadFileMethod {
     /**
      * 以行为单位读取文件，常用于读面向行的格式化文件
      */
-    public static void readFileByLines(String fileName) {
-        File file = new File(fileName);
-        BufferedReader reader = null;
-        try {
-            System.out.println("以行为单位读取文件内容，一次读一整行：");
-            reader = new BufferedReader(new FileReader(file));
+    public static List<String> readFileByLines(String fileName) {
+        List<String> lines = new ArrayList<>();
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String tempString = null;
-            int line = 1;
-            // 一次读入一行，直到读入null为文件结束
             while ((tempString = reader.readLine()) != null) {
-                // 显示行号
-                System.out.println("line " + line + ": " + tempString);
-                line++;
+                lines.add(tempString);
             }
-            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e1) {
-                }
-            }
         }
+        return lines;
     }
-
 
     /**
      * 随机读取文件内容
