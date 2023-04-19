@@ -9,4 +9,10 @@ XMind
 Navicat Premium
 Charles
 sequel Pro
+Blinks
+EyeSpy
+lantern
+印象笔记
+mat
+iShot
 
