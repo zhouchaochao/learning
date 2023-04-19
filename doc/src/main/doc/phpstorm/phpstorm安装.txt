@@ -1,0 +1,27 @@
+
+下载phpstorm
+http://www.520xiazai.com/DownSoft/?softid=4095&pathid=4&cache.html
+PhpStorm 2020.3.3 mac主程序(M1 CPU)
+下载到安装文件：
+PhpStorm-2020.3.3-aarch64.dmg
+
+双击执行安装
+
+《最新IDE激活方式（所有IDE均适用）》
+https://www.yuque.com/u30882/rx39g7/twphki
+
+下载插件：https://www.yuque.com/u30882/rx39g7/dhe52q
+
+ide-eval-resetter-2.1.6.zip
+解压之后得到
+ide-eval-resetter-2.1.6.jar
+
+然后将这个插件直接扔进工作区
+
+重启IDE，
+然后再help -> Eval Reset
+点击Reset就可以重新生效30天
+勾选上最下面插件的Auto Reset before per restart
+
+今天是4/12号，激活到了5/12号，查看是否完成激活在明天就可以看到激活时间会延长一天，所有的操作都是无形之中的，不必每次操作。
+从而达到无限使用的效果。
