@@ -3,13 +3,7 @@ package com.cc.multiThread;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.slf4j.Logger;
@@ -28,6 +22,9 @@ public class CompletableFutureTest {
 
     private Executor executor = new ThreadPoolExecutor(240, 10000, 500, TimeUnit.SECONDS,
         new SynchronousQueue<Runnable>(), new ThreadFactoryBuilder().setNameFormat("thread-pool-%d").build());
+
+    private static final ThreadPoolExecutor DIFF_THREAD_POOL = new ThreadPoolExecutor(8, 16, 500, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(1000), new ThreadFactoryBuilder().setNameFormat("diff-thread-pool-%d").build(), new ThreadPoolExecutor.DiscardPolicy());
 
     public static void main(String[] args) {
         new CompletableFutureTest().test();
