@@ -1,6 +1,10 @@
 
+下载页面：
+https://maven.apache.org/download.cgi
+
 下载安装maven：
 1.wget https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+ 或者浏览器直接下载https://archive.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
 2.tar -zxvf apache-maven-3.5.4-bin.tar.gz
 mv /home/wheeljack-web/apache-maven-3.5.4 /home/apache-maven-3.5.4
 3.vim /etc/profile
@@ -26,7 +30,7 @@ export MAVEN_HOME
 export PATH
 
 保存，退出
-dddeMacBook-Pro:~ dd$ source /Users/dd/.bash_profilee
+dddeMacBook-Pro:~ dd$ source /Users/dd/.bash_profile
 dddeMacBook-Pro:~ dd$ mvn -v
 Apache Maven 3.5.2 (138edd61fd100ec658bfa2d307c43b76940a5d7d; 2017-10-18T15:58:13+08:00)
 Maven home: /Users/dd/Applications/apache-maven-3.5.2
@@ -73,3 +77,81 @@ vim /usr/local/apache-maven-3.6.1/conf/settings.xml
 /usr/local/apache-maven-3.6.1
 并且设置maven的setting file，然后勾选override:
 /usr/local/apache-maven-3.6.1/conf/settings.xml
+
+
+20210923
+====================
+叭叭安装mvn:
+
+下载：
+http://maven.apache.org/download.cgi
+apache-maven-3.8.2-bin.tar.gz
+
+双击解压后：
+CC-MAC:Downloads didi$ ls /Users/didi/Downloads/apache-maven-3.8.2
+LICENSE   NOTICE    README.txt  bin   boot    conf    lib
+
+移动：
+CC-MAC:Downloads didi$ sudo mv /Users/didi/Downloads/apache-maven-3.8.2 /usr/local/
+
+查看：
+CC-MAC:Downloads didi$ ls /usr/local/apache-maven-3.8.2/
+LICENSE   NOTICE    README.txt  bin   boot    conf    lib
+
+配置环境变量
+CC-MAC:Downloads didi$ vim ~/.bash_profile
+
+export MAVEN_HOME=/usr/local/apache-maven-3.8.2
+export PATH=$MAVEN_HOME/bin:$PATH
+
+重新加载配置：
+CC-MAC:Downloads didi$ source ~/.bash_profile
+
+查看mvn版本：
+CC-MAC:Downloads didi$ mvn -version
+Apache Maven 3.8.2 (ea98e05a04480131370aa0c110b8c54cf726c06f)
+Maven home: /usr/local/apache-maven-3.8.2
+Java version: 1.8.0_241, vendor: Oracle Corporation, runtime: /Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home/jre
+Default locale: zh_CN, platform encoding: UTF-8
+OS name: "mac os x", version: "10.16", arch: "x86_64", family: "mac"
+
+备份：
+mv /usr/local/apache-maven-3.8.2/conf/settings.xml /usr/local/apache-maven-3.8.2/conf/backup20210923.settings.xml
+
+
+参考：
+http://wiki.intra.xiaojukeji.com/pages/viewpage.action?pageId=83531647#Artifactory%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E-%E4%BA%8C%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AENpm%E4%BB%93%E5%BA%93
+
+生成settings.xml配置文件
+DIDI-C02G3454Q05D:conf didi$ bash <(curl -s -S -L https://git.xiaojukeji.com/elevate/environment/raw/master/setup-scripts/maven_setup.sh)
+LDAP username:superzhou
+password:
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1966  100  1966    0     0  16803      0 --:--:-- --:--:-- --:--:-- 16803
+[Info] : Reconfiure settings.xml under the /Users/didi/.m2 !
+[Info] : Finish maven settings.xml configure!
+#######################################################################################
+[Prompt] : Please make sure you don't have any other settings.xml files overriding
+           /Users/didi/.m2. For example, you may have /usr/local/apache-maven-3.8.2/conf/settings.xml
+           or you may specified one in your IDE settings. For more details, Please see:
+           https://maven.apache.org/settings.html#Quick_Overview
+#######################################################################################
+Please enter to confirm:
+DIDI-C02G3454Q05D:conf didi$ ls /Users/didi/.m2/
+repository	settings.xml
+
+
+DIDI-C02G3454Q05D:.m2 didi$ ls /Users/didi/.m2/settings.xml
+/Users/didi/.m2/settings.xml
+DIDI-C02G3454Q05D:.m2 didi$ cp /Users/didi/.m2/settings.xml /usr/local/apache-maven-3.8.2/conf/
+backup20210923.settings.xml  logging/                     toolchains.xml
+DIDI-C02G3454Q05D:.m2 didi$ cp /Users/didi/.m2/settings.xml /usr/local/apache-maven-3.8.2/conf/
+DIDI-C02G3454Q05D:.m2 didi$ ls /usr/local/apache-maven-3.8.2/conf/settings.xml
+/usr/local/apache-maven-3.8.2/conf/settings.xml
+
+在idea中设置maven的home路径：
+/usr/local/apache-maven-3.8.2
+并且设置maven的setting file，然后勾选override:
+/usr/local/apache-maven-3.8.2/conf/settings.xml
