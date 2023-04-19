@@ -12,9 +12,23 @@ git branch -a
 git checkout -b search origin/search   //作用是checkout远程的search分支，在本地起名为search分支，并切换到本地的search分支
 git pull
 git pull origin dev //从远端dev分支pull
+git pull origin main //fetch 远程 main 分支的 commit 到本地，然后 merge 给当前所在分支
+git push origin main //将当前所在分支的所有 commit，push 给远程 main 分支，在 main 分支上依次 create commit
 git checkout dev //切换回dev分支，并开始开发。
 git branch -a //列出所有分支名称
 git branch //列出本地所有分支
+git branch test1209 //基于当前分支创建新分支test1209
+git switch test1209 //切换到分支test1209
+git branch -d test1209 //删除分支test1209
+git switch -c test120901 //基于当前分支创建并且切换到 test120901 分支
+git merge dev //将当前所在分支的最后一个 commit，与 dev 分支的 HEAD 所指向的 commit 合并，并生成 next commit
+git reset 6be08be6 // 将 HEAD 回退到 6be08be6 位置，6be08be6之后所有 commit 将不可见（针对本地而言）
+git revert 6be08be6 // 撤销 6be08be6，并生成当前 HEAD 的 next commit，某种意义上实现回退
+// git switch 和 git checkout 在分支操作方面的用处完全一样。那么在分支操作上尽量使用 git switch
+// 因为git switch 相较于 git checkout 语义更明确。另外git checkout 除了可以操作分支外，它还可以操作文件。即该命令可以重写工作区，是一个比较危险的命令
+git checkout dev // 选择 dev 分支
+git checkout -b dev // 创建并选择 dev 分支
+
 
 git强制覆盖本地命令（单条执行）：
 git fetch --all && git reset --hard origin/dev_branch && git pull
@@ -40,7 +54,8 @@ git clone http://gitlab.xxx/abc.git
 
 刷新本地分支列表
 git remote update origin --prune
-
+或者：
+git remote update origin --p
 
 
 
