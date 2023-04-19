@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autonumber
+端 -> API: 发单
+API -> cash: 请求未支付取消费拦截
+API <-- cash: 返回拦截（errno,errmsg,orderId）
+API -> API: 组织数据
+API --> 端: 返回
+@enduml

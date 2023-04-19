@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autonumber
+
+API -> t: 司乘确认取消
+t -> t: 判责，产生数据（cancel_fee_merge_threshold）
+API <-- t: 返回数据（cancel_fee_merge_threshold）
+
+API -> cash: 请求参数（cancel_fee_merge_threshold）
+cash <-- cash:判断是否需要合并取消费，进行合并
+API <-- cash: 返回
+
+@enduml

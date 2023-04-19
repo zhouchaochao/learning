@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autonumber
+端 -> API: 发单
+API -> c: 请求未支付取消费拦截
+API <-- c: 返回拦截（errno,errmsg,orderId）//灰度切换
+
+API -> com: 发单桩点
+com -> c: 请求checkUnPayOrder()
+com <-- c: 返回订单列表（is_merger_payment_mother，is_can_merge）
+com -> com: 判断是否拦截（errno,errmsg,orderId）
+API <-- com: 组织数据
+API --> 端: 透传com组织的数据
+@enduml

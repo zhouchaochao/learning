@@ -25,6 +25,7 @@
         <module>groovy-test</module>
         <module>doc</module>
         <module>go</module>
+        <module>springboot-di</module>
     </modules>
 
     <packaging>pom</packaging>

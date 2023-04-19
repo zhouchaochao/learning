@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+autonumber
+API -> cash: 请求未支付取消费拦截
+API <-- cash: 返回拦截（errno,errmsg,orderId）
+
+API -> com: 发单桩点
+com -> c: 请求checkUnPayOrder()
+com <-- c: 返回:未支付订单列表
+com -> com: 判断是否拦截，是否合并
+com -> c: 请求mergeUnPayCancelOrder()
+com <-- c: 返回合并成功
+API <-- com: 返回拦截结果&文案
+@enduml
