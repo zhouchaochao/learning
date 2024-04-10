@@ -9,7 +9,9 @@ git branch -d Chapater8 可以
 查看所有分支
 git branch -a
 
-git checkout -b search origin/search   //作用是checkout远程的search分支，在本地起名为search分支，并切换到本地的search分支
+git checkout -b search origin/search   // checkout远程分支到本地
+git checkout x/src/main/java/com/dd/i/l/V2Controller.java //将modified状态文件回退到unmodified状态。（撤销更改。还原。恢复，取消更改，回滚变更）
+git restore x/src/main/java/com/dd/i/l/V2Controller.java //将modified状态文件回退到unmodified状态。（撤销更改。还原。恢复，取消更改，回滚变更）
 git pull
 git pull origin dev //从远端dev分支pull
 git pull origin main //fetch 远程 main 分支的 commit 到本地，然后 merge 给当前所在分支
