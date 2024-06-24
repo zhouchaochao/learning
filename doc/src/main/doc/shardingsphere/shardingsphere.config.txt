@@ -1,0 +1,84 @@
+多数据源分表配置
+
+############# db config start #############
+spring.shardingsphere.datasource.names=ds1001,ds1002,ds1003
+spring.shardingsphere.sharding.default-data-source-name=ds1003
+
+# 数据源1
+spring.shardingsphere.datasource.ds1001.type=com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.ds1001.driver-class-name=com.mysql.jdbc.Driver
+spring.shardingsphere.datasource.ds1001.jdbc-url=jdbc:mysql://{{mysql.ds1001.ip}}:{{mysql.ds1001.port}}/{{mysql.ds1001.database}}?useUnicode=true&characterEncoding=utf-8&useSSL=true&autoReconnect=true&serverTimezone=Asia/Shanghai
+spring.shardingsphere.datasource.ds1001.username={{mysql.ds1001.username}}
+spring.shardingsphere.datasource.ds1001.password={{mysql.ds1001.password}}
+spring.shardingsphere.datasource.ds1001.connection-timeout=30000
+spring.shardingsphere.datasource.ds1001.max-lifetime=110000
+spring.shardingsphere.datasource.ds1001.maximum-pool-size=20
+spring.shardingsphere.datasource.ds1001.minimum-idle=10
+spring.shardingsphere.datasource.ds1001.pool-name=HikariPool-ds1001
+spring.shardingsphere.datasource.ds1001.connectionTestQuery=SELECT 1
+
+# 数据源2
+spring.shardingsphere.datasource.ds1002.type=com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.ds1002.driver-class-name=com.mysql.jdbc.Driver
+spring.shardingsphere.datasource.ds1002.jdbc-url=jdbc:mysql://{{mysql.servicecontrol.ip}}:{{mysql.servicecontrol.port}}/servicecontrol?useUnicode=true&characterEncoding=utf-8&useSSL=true&autoReconnect=true&serverTimezone=UTC
+spring.shardingsphere.datasource.ds1002.username={{mysql.servicecontrol.username}}
+spring.shardingsphere.datasource.ds1002.password={{mysql.servicecontrol.password}}
+spring.shardingsphere.datasource.ds1002.connection-timeout=30000
+spring.shardingsphere.datasource.ds1002.max-lifetime=110000
+spring.shardingsphere.datasource.ds1002.maximum-pool-size=10
+spring.shardingsphere.datasource.ds1002.minimum-idle=10
+spring.shardingsphere.datasource.ds1002.pool-name=HikariPool-sc-info
+spring.shardingsphere.datasource.ds1002.connectionTestQuery=SELECT 1
+
+# 数据源3
+spring.shardingsphere.datasource.ds1003.type=com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.ds1003.driver-class-name=com.mysql.jdbc.Driver
+spring.shardingsphere.datasource.ds1003.jdbc-url=jdbc:mysql://{{mysql.ds1003.ip}}:{{mysql.ds1003.port}}/ds1003?useUnicode=true&characterEncoding=utf-8&useSSL=true&autoReconnect=true&serverTimezone=UTC
+spring.shardingsphere.datasource.ds1003.username={{mysql.ds1003.username}}
+spring.shardingsphere.datasource.ds1003.password={{mysql.ds1003.password}}
+spring.shardingsphere.datasource.ds1003.connection-timeout=30000
+spring.shardingsphere.datasource.ds1003.max-lifetime=110000
+spring.shardingsphere.datasource.ds1003.maximum-pool-size=10
+spring.shardingsphere.datasource.ds1003.minimum-idle=10
+spring.shardingsphere.datasource.ds1003.pool-name=HikariPool-ds1003
+spring.shardingsphere.datasource.ds1003.connectionTestQuery=SELECT 1
+
+spring.shardingsphere.props.sql.show=false
+
+# ds1002 不分表
+spring.shardingsphere.sharding.tables.goods_talbe.actual-data-nodes=ds1002.goods_talbe
+spring.shardingsphere.sharding.tables.animals_table.actual-data-nodes=ds1002.animals_table
+spring.shardingsphere.sharding.tables.trees_table.actual-data-nodes=ds1002.trees_table
+
+# ds1003 不分表
+spring.shardingsphere.sharding.tables.foods_table.actual-data-nodes=ds1003.foods_table
+spring.shardingsphere.sharding.tables.fruits_table.actual-data-nodes=ds1003.fruits_table
+
+# ds1001 分表
+spring.shardingsphere.sharding.tables.school_info_talbe.actual-data-nodes=ds1001.school_info_talbe_$->{0..999}
+spring.shardingsphere.sharding.tables.school_info_talbe.table-strategy.inline.sharding-column=school_id
+spring.shardingsphere.sharding.tables.school_info_talbe.table-strategy.inline.algorithm-expression=school_info_talbe_$->{school_id % 1000}
+spring.shardingsphere.sharding.tables.school_info_talbe.key-generator.column=id
+spring.shardingsphere.sharding.tables.school_info_talbe.key-generator.type=SNOWFLAKE
+spring.shardingsphere.sharding.tables.school_info_talbe.key-generator.props.worker.id=123
+
+spring.shardingsphere.sharding.tables.user_info_talbe.actual-data-nodes=ds1001.user_info_talbe_$->{0..999}
+spring.shardingsphere.sharding.tables.user_info_talbe.table-strategy.inline.sharding-column=user_id
+spring.shardingsphere.sharding.tables.user_info_talbe.table-strategy.inline.algorithm-expression=user_info_talbe_$->{user_id % 1000}
+spring.shardingsphere.sharding.tables.user_info_talbe.key-generator.column=id
+spring.shardingsphere.sharding.tables.user_info_talbe.key-generator.type=SNOWFLAKE
+spring.shardingsphere.sharding.tables.user_info_talbe.key-generator.props.worker.id=123
+
+# 指定xml路径
+mybatis.mapper-locations=classpath*:mapper/*.xml
+############# db config end #############
+
+
+// 启动类
+@EnableAutoConfiguration
+@ComponentScan("com.cc")
+@ServletComponentScan
+@MapperScan(basePackages = "com.cc.learning.dao")
+public class LearningSystemApplication extends SpringBootServletInitializer {
+
+}
