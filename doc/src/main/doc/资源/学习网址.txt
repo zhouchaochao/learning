@@ -10,6 +10,62 @@ https://www.coursera.org/browse/degrees-and-professional-certificates
 阿里中间件博客
 http://jm.taobao.org/categories/
 
+稀土掘金
+https://juejin.cn/backend
+
+github
+https://github.com/didi/DDMQ
+
+stackoverflow
+https://stackoverflow.com/
+
+算法
+https://github.com/doocs/leetcode
+
+算法labuladong
+https://github.com/labuladong/fucking-algorithm
+https://labuladong.online/algo/home/
+
+Java精选
+微信公众号：Java精选(w_z90110)，每日推送优质技术文章等。
+知乎：https://www.zhihu.com/people/jx_java
+
+why技术
+微信公众号：why技术。全网首发。
+https://www.zhihu.com/people/why-87-83
+
+老胡聊Java
+公众号：老胡聊Java，就讲Java学习面试涨薪那些事
+https://www.zhihu.com/people/hsmcomputer
+
+JavaGuide​
+Java 原创技术干货！网站：javaguide.cn
+https://www.zhihu.com/people/javaguide
+
+Java架构月亮
+来自一位女JAVA高级架构师的分享
+https://www.zhihu.com/people/yue-liang-28-84
+
+Java架构技术
+帮助您更好的了解Java
+https://www.zhihu.com/people/javajia-gou-ji-zhu-44
+
+java架构基础
+Java爱好者
+https://www.zhihu.com/people/biubiu-14-82
+
+tinyid
+https://github.com/didi/tinyid?tab=readme-ov-file
+
+
+
+
+
+
+
+
+
+
 
 
 
