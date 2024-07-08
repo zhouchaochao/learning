@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Title: WildcardMatching
  * Description: WildcardMatching
  * 44. 通配符匹配
  * https://leetcode-cn.com/problems/wildcard-matching/
+ *  提示：使用动态规划。
  * Date:  2019/4/7
  *
  * @author <a href=mailto:zhouzhichao1024@gmail.com>chaochao</a>
@@ -18,6 +20,7 @@ import java.util.Arrays;
 public class WildcardMatching {
 
     private static final Logger logger = LoggerFactory.getLogger(WildcardMatching.class);
+
 
     public static void main(String[] args) {
 

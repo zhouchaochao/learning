@@ -12,38 +12,38 @@ import org.slf4j.LoggerFactory;
  * @date: 2023-06-14
  */
 
-public class CountDigitOne {
+public class NumberOfDigitOne2 {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CountDigitOne.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NumberOfDigitOne2.class);
 
     public static void main(String[] args) {
 
         int n = 0;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
 
         n = 1;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
 
         n = 9;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
 
         n = 10;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
 
         n = 11;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
 
         n = 13;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
 
         n = 113;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
 
         n = 123;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
 
         n = 213;
-        System.out.println(n + " -> " + new CountDigitOne().countDigitOne(n));
+        System.out.println(n + " -> " + new NumberOfDigitOne2().countDigitOne(n));
     }
 
     public int countDigitOne(int n) {

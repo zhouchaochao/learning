@@ -19,6 +19,67 @@ public class BestTimeToBuyAndSellStock3 {
         new BestTimeToBuyAndSellStock3().testMaxProfit("[1,2,3,4,5]");
         new BestTimeToBuyAndSellStock3().testMaxProfit("[7,6,4,3,1]");
         new BestTimeToBuyAndSellStock3().testMaxProfit("[6,1,3,2,4,7]");
+
+        int[][] dp = new int[100][4];
+        // int[0][0] 不持有
+        // int[0][1] 持有1
+        // int[0][2] 卖出1
+        // int[0][3] 持有2
+        // int[0][4] 卖出2
+
+        // int[x][0]   int[x-1][0]
+        // int[x][1]   sum-v;   int[x-1][0] - v
+        // int[x][2]   sum+v;   int[x-1][1] + v
+        // int[x][3]   sum-v;   int[x-1][2] - v
+        // int[x][4]   sum+v;   int[x-1][3] + v
+    }
+
+    public int maxProfit3(int[] prices) {
+        int[][] dp = new int[prices.length][5];
+        dp[0][0] = 0;
+        dp[0][1] = - prices[0];
+        dp[0][2] = - prices[0];
+        dp[0][3] = - prices[0];
+        dp[0][4] = - prices[0];
+        int max = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            dp[i][0] = dp[i - 1][0];
+            dp[i][1] = Math.max(dp[i - 1][0] - prices[i], dp[i - 1][1]);
+            dp[i][2] = Math.max(dp[i - 1][1] + prices[i],dp[i - 1][2]);
+            dp[i][3] = Math.max(dp[i - 1][2] - prices[i], dp[i - 1][3]);
+            dp[i][4] = Math.max(dp[i - 1][3] + prices[i], dp[i - 1][4]);
+
+            max = Math.max(max, dp[i][0]);
+            max = Math.max(max, dp[i][1]);
+            max = Math.max(max, dp[i][2]);
+            max = Math.max(max, dp[i][3]);
+            max = Math.max(max, dp[i][4]);
+        }
+        return max;
+    }
+
+    public int maxProfit4(int[] prices) {
+        int[] dp = new int[5];
+        //dp[0] = 0; // 这个不必存在，dp[] 长度为4就够了
+        dp[1] = - prices[0]; // 买过一次股票
+        dp[2] = - prices[0]; // 卖过一次股票
+        dp[3] = - prices[0]; // 买过2次股票（之前已经进行过一次买，卖）
+        dp[4] = - prices[0]; // 卖过2次股票
+        int max = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            dp[4] = Math.max(dp[3] + prices[i], dp[4]);
+            dp[3] = Math.max(dp[2] - prices[i], dp[3]);
+            dp[2] = Math.max(dp[1] + prices[i],dp[2]);
+            dp[1] = Math.max(0 - prices[i], dp[1]);
+
+            //max = Math.max(max, dp[1]); // 这个肯定不是最优解，不用考虑
+            max = Math.max(max, dp[2]);
+            //max = Math.max(max, dp[3]); // 这个肯定不是最优解，不用考虑
+            max = Math.max(max, dp[4]);
+        }
+        return max;
     }
 
     public void testMaxProfit(String text) {

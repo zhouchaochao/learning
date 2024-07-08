@@ -4,6 +4,8 @@ import com.cc.leetCode.util.StringToArrayUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.PriorityQueue;
+
 /**
  * Title: MergeKSortedLists
  * Description: MergeKSortedLists
@@ -187,6 +189,28 @@ public class MergeKSortedLists {
         ListNode tmp = lists[x];
         lists[x] = lists[y];
         lists[y] = tmp;
+    }
+
+
+    PriorityQueue<ListNode> pq = new PriorityQueue<>(((o1, o2) -> {return  o1.val-o2.val;}));
+    public ListNode mergeKLists2(ListNode[] lists) {
+        for(ListNode node:lists){
+            if(node!=null){
+                pq.offer(node);
+            }
+        }
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while(!pq.isEmpty()){
+            ListNode s = pq.poll();
+            cur.next = s;
+            cur=cur.next;
+            s = s.next;
+            if(s!=null){
+                pq.offer(s);
+            }
+        }
+        return dummy.next;
     }
 
 }

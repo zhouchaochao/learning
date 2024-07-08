@@ -28,6 +28,24 @@ public class TrappingRainWater {
         System.out.println(new TrappingRainWater().trap(height));
     }
 
+    public int trap2(int[] height) {
+        int ans = 0;
+        int left = 0, right = height.length - 1;
+        int leftMax = 0, rightMax = 0;
+        while (left < right) {
+            leftMax = Math.max(leftMax, height[left]);
+            rightMax = Math.max(rightMax, height[right]);
+            if (height[left] < height[right]) {
+                ans += leftMax - height[left];
+                ++left;
+            } else {
+                ans += rightMax - height[right];
+                --right;
+            }
+        }
+        return ans;
+    }
+
     /**
      * 1个数组，一次遍历
      * 思路：先计算当前柱子左边最高的值，然后反向遍历求出当前柱子右边最高的值，如果当前柱子小于左边最高，又小于右边最高，说明是个坑，可以存雨水
