@@ -1,0 +1,60 @@
+提取出json串中的所有key
+方法：
+正则表达替换
+字符串截取
+字符串分割
+集合变多行
+
+select
+    explode(
+        split(
+            substr(
+                regexp_replace(
+                    '{"level":0,"fee":0,"experiment_key":"","stage_1":1}',
+                    '.*?"(\\w+)":[^,\}]*\}?',
+                    ',$1'
+                ),
+                2
+            ),
+            ','
+        )
+    ) as json_key;
+结果：
+总条数: 4
+level
+fee
+experiment_key
+stage_1
+
+
+
+实际举例：
+select
+    json_key,
+    COUNT(*)
+from
+    (
+        select
+            explode(
+                split(
+                    substr(
+                        regexp_replace(
+                            get_json_object(resp, '$.data.config'),
+                            '.*?"(\\w+)":[^,\}]*\}?',
+                            ',$1'
+                        ),
+                        2
+                    ),
+                    ','
+                )
+            ) as json_key
+        from
+            cc.ods_log
+        where
+            concat_ws('-', year, month, day, hour) = '2023-02-17-08'
+            and gp_code = 'A0001'
+    ) t_json_key
+group by
+    json_key
+order by
+    json_key desc;

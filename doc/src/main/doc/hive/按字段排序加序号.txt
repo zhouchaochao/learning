@@ -1,0 +1,52 @@
+按字段排序加序号
+select
+    name , single_age , row_number() over ( partition by name order by single_age asc ) num
+from
+(
+	select
+		name, single_age
+	from
+	(
+		select
+		    'a' as name,
+		    '10 11 12 13' as ages
+		from
+		    cc.dwd_order
+		where
+		    concat_ws('-', year, month, day) = '2022-02-15'
+		    limit 1
+	)test lateral view explode(split(ages, ' ')) test_ages as single_age
+) t1
+总条数: 4
+a	10	1
+a	11	2
+a	12	3
+a	13	4
+
+
+举例：取时间戳最新的一条记录
+select  *
+    from
+    (
+        select row_number() over (partition by param ["e_id"] order by param["timestamp"] desc) as rnk,
+            param ["e_id"] as e_id,
+            param ["area"] as area
+        from    cc.ods_log
+        where   concat_ws('-', year, month, day) between date_sub('2022-07-18', 1)
+          and   date_add('2022-07-24', 1)
+          and   param ["dFee"] is not null
+    ) a
+    where   rnk = 1
+
+
+select  *
+    from
+    (
+        select  c_id
+                ,row_number() over (partition by o_id order by create_time desc) as rnk
+        from    cc.dwd_order
+        where   concat_ws('-', substr(pt, 1, 4), substr(pt, 5, 2), substr(pt, 7, 2)) >= '2022-07-18'
+          and concat_ws('-', substr(pt, 1, 4), substr(pt, 5, 2), substr(pt, 7, 2)) <= '2022-07-24'
+    ) t1
+    where   rnk = 1
+

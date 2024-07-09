@@ -16,3 +16,37 @@ lantern
 mat
 iShot
 
+web:
+processon 流程图 https://www.processon.com/diagrams
+摹客RP 原型设计 https://rp.mockplus.cn/team/ps3085555
+Mybatis 在线生成 http://www.javacoder.top/
+    https://tools.49db.cn/#/
+
+web画图工具：
+https://excalidraw.com/
+
+GPT
+https://gpt4o.so/zh-CN
+
+画图工具
+https://excalidraw.com/
+
+在线PS
+https://ps.gaoding.com/#/
+
+时序图工具
+https://plantuml.com/zh/sequence-diagram#425ba4350c02142c
+https://www.websequencediagrams.com/app
+https://tooltt.com/sequence/
+
+在线工具
+https://tool.lu/
+
+GCeasy
+https://www.gceasy.io/diamondgc-report.jsp?p=c2hhcmVkLzIwMjIvMTEvMjQvZ2MubG9nLjIwMjIxMTI0MC50eHQuemlwLS04LTQ1LTQ3&channel=WEB
+
+慕客
+https://user.mockplus.cn/signin?next=https://rp.mockplus.cn/editor/KAT-I6yFwjMI/_a9apCUDbbzYF
+墨刀
+https://modao.cc/app/rpL7ADuOrwa07vT5bi4tb0#screen=sliyb8bw27ngvac
+

@@ -1,0 +1,173 @@
+《left join 的重复问题》
+https://www.cnblogs.com/dbqjava/p/6532618.html
+
+测试left join，如果右表有重复，那么会重复。
+	select
+		safetyTable2.id as id,
+		safetyTable2.name as name,
+		orderTable.order_id as order_id,
+		orderTable.order_status as order_status
+	from
+	(
+		select
+		    1 as id,
+		    'a' as name
+		from
+		    cc.dwd_order
+		where
+		    concat_ws('-', year, month, day) = '2022-02-15'
+		    limit 1
+	) safetyTable2
+	left join
+	(
+		select
+		    1 as id,
+		    order_id,
+		    order_status
+		from
+		    cc.dwd_order
+		where
+		    concat_ws('-', year, month, day) = '2022-02-15'
+		    limit 2;
+	) orderTable
+	on safetyTable2.id = orderTable.id
+location_country	order_id	passenger_id	order_status
+1	a	88450	5
+1	a	15259	7
+
+
+
+测试left join左表数据少
+select
+	t_1.name,
+	t_1.single_age,
+	t_2.name,
+	t_2.single_age
+from
+(
+	select name, single_age
+	from
+	(
+		select
+				    'a' as name,
+				    '10 12' as ages
+				from
+				   cc.dwd_order
+				where
+				    concat_ws('-', year, month, day) = '2022-02-15'
+				    limit 1
+	)test lateral view explode(split(ages, ' ')) test_ages as single_age
+) t_1
+left join
+(
+	select name, single_age
+	from
+	(
+		select
+				    'a' as name,
+				    '10 11 12 13' as ages
+				from
+				    cc.dwd_order
+				where
+				    concat_ws('-', year, month, day) = '2022-02-15'
+				    limit 1
+	)test lateral view explode(split(ages, ' ')) test_ages as single_age
+) t_2
+on t_1.single_age = t_2.single_age
+
+总条数: 2
+name	single_age	name	single_age
+a	10	a	10
+a	12	a	12
+
+
+测试left join右表数据少
+select
+	t_1.name,
+	t_1.single_age,
+	t_2.name,
+	t_2.single_age
+from
+(
+	select name, single_age
+	from
+	(
+		select
+				    'a' as name,
+				    '10 11 12 13' as ages
+				from
+				    cc.dwd_order
+				where
+				    concat_ws('-', year, month, day) = '2022-02-15'
+				    limit 1
+	)test lateral view explode(split(ages, ' ')) test_ages as single_age
+) t_1
+left join
+(
+	select name, single_age
+	from
+	(
+		select
+				    'a' as name,
+				    '11 13' as ages
+				from
+				    cc.dwd_order
+				where
+				    concat_ws('-', year, month, day) = '2022-02-15'
+				    limit 1
+	)test lateral view explode(split(ages, ' ')) test_ages as single_age
+) t_2
+on t_1.single_age = t_2.single_age
+
+总条数: 4
+name	single_age	name	single_age
+a	10	null	null
+a	11	a	11
+a	12	null	null
+a	13	a	13
+
+
+
+测试left join，过滤掉右表不匹配的。
+select
+	t_1.name,
+	t_1.single_age,
+	t_2.name,
+	t_2.single_age
+from
+(
+	select name, single_age
+	from
+	(
+		select
+				    'a' as name,
+				    '10 11 12 13' as ages
+				from
+				    cc.dwd_order
+				where
+				    concat_ws('-', year, month, day) = '2022-02-15'
+				    limit 1
+	)test lateral view explode(split(ages, ' ')) test_ages as single_age
+) t_1
+left join
+(
+	select name, single_age
+	from
+	(
+		select
+				    'b' as name,
+				    '11 13' as ages
+				from
+				    cc.dwd_order
+				where
+				    concat_ws('-', year, month, day) = '2022-02-15'
+				    limit 1
+	)test lateral view explode(split(ages, ' ')) test_ages as single_age
+) t_2
+on t_1.single_age = t_2.single_age
+where t_2.single_age is not null
+
+总条数: 2
+name	single_age	name	single_age
+a	11	b	11
+a	13	b	13

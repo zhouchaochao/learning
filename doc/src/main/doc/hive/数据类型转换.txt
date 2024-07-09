@@ -1,0 +1,4 @@
+数据类型转换
+
+cast(rejectCount as int)
+cast(rejectCount as string)

@@ -57,6 +57,22 @@ https://www.zhihu.com/people/biubiu-14-82
 tinyid
 https://github.com/didi/tinyid?tab=readme-ov-file
 
+自己手写了一套高性能分布式IM即时通讯系统，出去面试嘎嘎聊，都把面试官整不会了！
+https://juejin.cn/post/7329860521242099723
+
+nginx 一把梭！（超详细讲解+实操）
+https://juejin.cn/post/7306041273822527514
+
+阿里二面：什么情况会发生Full GC？如何避免频繁Full GC？
+https://juejin.cn/post/7308434215812464690
+
+KMP 算法详解
+https://zhuanlan.zhihu.com/p/83334559
+
+nginx配置location总结及rewrite规则写法
+https://segmentfault.com/a/1190000002797606
+
+
 
 
 

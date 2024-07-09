@@ -1,0 +1,20 @@
+
+一行变多行：
+select name, single_age
+from
+(
+	select
+			    'a' as name,
+			    '10 11 12 13' as ages
+			from
+			    cc.dwd_order
+			where
+			    concat_ws('-', year, month, day) = '2022-02-15'
+			    limit 1
+)test lateral view explode(split(ages, ' ')) test_ages as single_age;
+结果
+a	10
+a	11
+a	12
+a	13
+

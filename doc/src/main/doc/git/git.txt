@@ -58,6 +58,6 @@ git clone http://gitlab.xxx/abc.git
 git remote update origin --prune
 或者：
 git remote update origin --p
-
-
+刷新本地分支
+git fetch
 

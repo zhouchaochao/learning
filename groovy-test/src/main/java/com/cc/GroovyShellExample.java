@@ -9,9 +9,7 @@ import org.codehaus.groovy.runtime.InvokerHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -159,6 +157,22 @@ public class GroovyShellExample {
         expression = "3 in idArray";
         result = expressionCalculate(expression, infos);
         logger.info(expression + "=" + result.toString() + "。类型：" + result.getClass().toString());
+
+        infos = new HashMap<>();
+        new HashSet<Long>() {{add(55000197L);add(55000198L);add(55000199L);}};
+        infos.put("cityIdList", new long[]{55000199L, 55000199L, 55000199L});
+        infos.put("countryCode", "BR");
+        infos.put("price", 1.5);
+        infos.put("cityId", 55000199L);
+        expression = "countryCode == \"BR\" && cityId in cityIdList && price >= 1.5";
+        result = expressionCalculate(expression, infos);
+        logger.info(expression + "=" + result.toString() + "。类型：" + result.getClass().toString());
+
+        expression = "countryCode == \"BR\" && cityId in new HashSet<Long>() {{add(55000197L);add(55000198L);add(55000199L);}} && price >= 1.5";
+        result = expressionCalculate(expression, infos);
+        logger.info(expression + "=" + result.toString() + "。类型：" + result.getClass().toString());
+
+
 
 
         // ${orderPrice} 无法识别

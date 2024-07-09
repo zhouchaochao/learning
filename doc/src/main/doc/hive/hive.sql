@@ -326,6 +326,21 @@ alter table fu.dm_fu_rvi_lost_rate drop PARTITION(year='2017');
 alter table fu.dm_fu_rvi_lost_rate drop PARTITION(year='2018',month='01',day='01');
 
 
+select
+    t_d.d_id as d_id,
+    if(t_d.pay is null, 0, t_d.pay) as pay,
+    if(t_d.r_amount is null, 0, t_d.r_amount) as r_amount,
+    case
+        when t_d.r_amount is null then 0
+        when t_d.r_amount >= 100000 then 100000
+        when t_d.r_amount >= 10000 then 10000
+        when t_d.r_amount >= 1000 then 1000
+        when t_d.r_amount >= 1 then 1
+        else 0
+    end as r_amount_level
+from (
+    -- select driver_id,ipk
+) t_d
 
 
 

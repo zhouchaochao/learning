@@ -1,0 +1,10 @@
+@startgantt
+[开发] lasts 12 days
+[联调] lasts 3 days
+[测试] lasts 10 days
+
+Project starts 2023-08-28
+[开发] starts 2023-09-01
+[联调] starts 2023-09-11
+[测试] starts 2023-09-13
+@endgantt

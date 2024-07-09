@@ -1,0 +1,52 @@
+jvm参数
+
+/usr/local/jdk1.7/bin/java
+ -jar
+ -server
+ -Xmx4g
+ -Xms4g
+ -XX:SurvivorRatio=8 Survivor区占比
+ -XX:MetaspaceSize=512m metaspace区域初始值
+ -XX:MaxMetaspaceSize=512m metaspace区域的最大值
+ -XX:+TraceClassLoading 跟踪类加载和卸载的情况
+ -XX:+TraceClassUnloading 跟踪类加载和卸载的情况
+ -XX:+UseG1GC
+ -XX:MaxGCPauseMillis=20 暂停时间，默认值200ms。这是一个软性目标，G1会尽量达成，如果达不成，会逐渐做自我调整
+ -XX:+UnlockExperimentalVMOptions  解锁实验参数，允许使用实验性参数，JVM中有些参数不能通过-XX直接复制需要先解锁，比如要使用某些参数的时候，可能不会生效，需要设置这个参数来解锁；一般使用在一些低版本jdk想使用高级参数或者可能高版本有的参数情况；
+ -XX:G1NewSizePercent=20 新生代内存初始空间（默认为整堆的5%，值配置整数，单位是%）
+ -XX:G1MaxNewSizePercent=30 新生代内存最大空间
+ -XX:InitiatingHeapOccupancyPercent=45
+	 默认值45，超过这个值，开始触发全局标记，进而触发mixed gc，注意这个值表示的是：老年区已使用空间/整个堆空间
+	 -XX:G1HeapWastePercent=10 默认值5%，也就是在全局并发标记结束后能够统计出所有可被回收的垃圾占Heap的比例值，如果超过5%，那么就会触发之后的多轮Mixed GC，mixed gc会同时回收年轻代+老年代，而这个参数可以指定mixed gc触发的时机。而且mixed gc 可以在 gc log中清楚的记录下来。这个参数与InitiatingHeapOccupancyPercent 结合使用的话可以提前回收老年代，让老年代提前释放空间。
+	 通过-XX:G1HeapWastePercent指定触发Mixed GC的堆垃圾占比，默认值5%，也就是在全局标记结束后能够统计出所有Cset内可被回收的垃圾占整对的比例值，如果超过5%，那么就会触发之后的多轮Mixed GC，如果不超过，那么会在之后的某次Young GC中重新执行全局并发标记。可以尝试适当的调高此阈值，能够适当的降低Mixed GC的频率。
+
+ -XX:G1MixedGCCountTarget=8
+ 	通过-XX:G1MixedGCCountTarget指定一个周期内触发Mixed GC最大次数，默认值8。一次全局并发标记后，最多接着8次Mixed GC，把全局并发标记阶段生成的Cset里的Region拆分为最多8部分，然后在每轮Mixed GC里收集一部分。这个值要和-XX:G1OldCSetRegionThresholdPercent配合使用，8*10%=80%，应该来说会大于每次标记阶段的Cset集合了。一般此参数也不需额外调整。
+ -XX:MaxTenuringThreshold=15
+ 	晋升年龄阈值，默认值15。一般新生对象经过15次Young GC会晋升到老年代，巨型对象会直接分配在老年代，同时在Young GC时，如果相同age的对象占Survivors空间的比例超过 -XX:TargetSurvivorRatio的值(默认50%)，则会自动将此次晋升年龄阈值设置为此age的值，所有年龄超过此值的对象都会被晋升到老年代，此举可能会导致老年代需要不少空间应对此种晋升。一般这个值不需要额外调整。
+-XX:TargetSurvivorRatio
+ 	设定survivor区的目标使用率。默认50，即survivor区对象目标使用率为50%。
+ -XX:ParallelGCThreads=8 并行GC线程数，STW期间
+ -XX:ConcGCThreads=4  并发线程数，非STW期间
+ -XX:-UseBiasedLocking 关闭偏向锁,然后默认会进入轻量级锁（默认打开）
+ -XX:-DisableExplicitGC 禁止显式执行GC,不允许通过代码来触发GC。
+ -XX:+PrintFlagsFinal
+ -XX:+PrintCommandLineFlags -verbose:gc
+ -XX:+PrintClassHistogram
+ -XX:+PrintReferenceGC
+ -XX:+PrintGCDetails
+ -XX:+PrintGCDateStamps
+ -XX:+PrintGCApplicationStoppedTime
+ -XX:+PrintSafepointStatistics
+ -XX:PrintSafepointStatisticsCount=1
+ -XX:+PrintHeapAtGC
+ -XX:+PrintTenuringDistribution
+ -XX:+UseGCLogFileRotation
+ -XX:NumberOfGCLogFiles=5
+ -XX:GCLogFileSize=100M
+ -Xloggc:/home/baidu/growth/gc.log
+ -XX:+HeapDumpOnOutOfMemoryError
+ -XX:HeapDumpPath=/home/baidu/growth
+ -XX:ErrorFile=/home/baidu/growth/hs_err_pid%p.log
+ growth-1.0.0-SNAPSHOT.jar
+ --spring.profiles.active=online

@@ -1,0 +1,6 @@
+cup.idle火焰图分析
+	java -jar arthas-boot.jar
+	profiler start
+	profiler status
+	profiler stop --format html
+

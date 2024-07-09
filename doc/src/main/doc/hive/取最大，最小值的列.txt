@@ -1,0 +1,26 @@
+取最大，最小值的列：
+select * from (
+	select
+	    name , title, single_age , row_number() over ( partition by name order by single_age asc ) num
+	from
+	(
+		select
+			name, title, single_age
+		from
+		(
+			select
+			    'a' as name,
+			    'b' as title,
+			    '10 11 12 13' as ages
+			from
+			    cc.dwd_order
+			where
+			    concat_ws('-', year, month, day) = '2022-02-15'
+			    limit 1
+		) test lateral view explode(split(ages, ' ')) test_ages as single_age
+	) t1
+) t2
+where num = 1;
+结果：
+a	b	10	1
+

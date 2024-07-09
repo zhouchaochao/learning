@@ -1,0 +1,15 @@
+
+    /**
+     * 1.不存在，初始化值为1，并设置过期时间(单位s)
+     * 2.存在，值+1
+     * 返回计数值
+     */
+    public final static DefaultRedisScript<Long> COUNT_AND_GET_SCRIPT = new DefaultRedisScript<>(
+            "if redis.call('setnx', KEYS[1], 1) == 1 then redis.call('pexpire', KEYS[1], 1000*ARGV[1]) return 1 else return redis.call('incr', KEYS[1]) end"
+            , Long.class
+    );
+
+    String redisKey = "cc_xxx";
+    int expireTimeSecond = 60;
+    int count = CacheUtils.getRedisTemplate(redisKey).execute(COUNT_AND_GET_SCRIPT, Collections.singletonList(redisKey), expireTimeSecond);
+

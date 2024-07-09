@@ -1,0 +1,12 @@
+
+SDS是一个基于Java开发的简单、易用、高性能的服务降级系统，支持限流、熔断和降级等功能，服务端必备！！
+https://github.com/didi/sds
+
+ID Generator id生成器 分布式id生成系统，简单易用、高性能、高可用的id生成系统
+https://github.com/didi/tinyid?tab=readme-ov-file
+
+DDMQ is a distributed messaging product with low latency, high throughput and high availability.
+https://github.com/didi/DDMQ
+
+
+

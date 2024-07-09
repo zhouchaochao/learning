@@ -1,0 +1,20 @@
+多行合并一行:
+
+SELECT
+    r_level,
+    concat_ws(
+        '|',
+        collect_set(
+            concat_ws(
+                '=',
+                cast(i_level as string),
+                cast(d_count as string)
+            )
+        )
+    ) as i_level_d_count
+FROM
+(
+
+) t_multi_line_data
+GROUP BY r_level
+

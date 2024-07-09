@@ -1,0 +1,56 @@
+union all：不去重不排序
+
+select
+    name,
+    ages
+from
+    (
+        select
+            'a' as name,
+            '10 11 12 13' as ages
+        from
+            cc.ods_log
+        where
+            concat_ws('-', year, month, day, hour) = '2022-08-01-01'
+        limit
+            1
+    ) t_1
+UNION ALL
+select
+    name,
+    ages
+from
+    (
+        select
+            'b' as name,
+            '10 11 12 13' as ages
+        from
+            cc.ods_log
+        where
+            concat_ws('-', year, month, day, hour) = '2022-08-01-01'
+        limit
+            1
+    ) t_1
+UNION ALL
+select
+    name,
+    ages
+from
+    (
+        select
+            'c' as name,
+            '10 11 12 13' as ages
+        from
+            cc.ods_log
+        where
+            concat_ws('-', year, month, day, hour) = '2022-08-01-01'
+        limit
+            1
+    ) t_1
+
+结果：
+name	ages
+a	10 11 12 13
+b	10 11 12 13
+c	10 11 12 13
+

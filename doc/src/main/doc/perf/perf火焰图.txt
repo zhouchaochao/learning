@@ -1,0 +1,29 @@
+1.申请机器运维操作权限
+
+2.开启压测
+启动时间：2022-10-12 19:17:37
+阶梯QPS：初始 200 QPS，峰值：500 QPS，每步增加：25 QPS，每步持续：180 秒
+
+3.生成火焰图
+参考：https://blog.csdn.net/code_peak/article/details/120813726
+
+执行采样：
+perf record -F 99 -p 1386 -g -- sleep 30
+[ perf record: Woken up 1 times to write data ]
+[kernel.kallsyms] with build id fa3176ba0d6abbf0713c64bced1059109c3b793b not found, continuing without symbols
+[ perf record: Captured and wrote 8.414 MB perf.data (59889 samples) ]
+
+简单查看采样统计：
+perf report -n --stdio
+
+生成svg火焰图
+git clone https://github.com/brendangregg/FlameGraph.git
+perf script -i perf.data &> perf.unfold
+FlameGraph/stackcollapse-perf.pl perf.unfold &> perf.folded
+FlameGraph/flamegraph.pl perf.folded > perf.svg
+
+上传下载火焰图：
+curl -F 'filecontent=@perf.svg' http://1.1.1.1:8000/resource/lego/perf.202210122007.svg
+
+浏览器打开查看
+http://img0.didiglobal.com/static/lego/perf.202210122007.svg
