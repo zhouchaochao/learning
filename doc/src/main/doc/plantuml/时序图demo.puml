@@ -1,0 +1,124 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+'自动编序号
+autonumber
+'箭头线的粗细
+skinparam sequenceArrowThickness 2
+'边框圆角
+skinparam roundcorner 10
+'参与者加下划线
+skinparam sequenceParticipant underline
+'手写体样式
+skinparam handwritten true
+'画布背景颜色
+skinparam backgroundColor #EEEBDC
+
+skinparam sequence {
+'箭头线颜色
+ArrowColor DeepSkyBlue
+'Actor类型参与者颜色
+'ActorBorderColor DeepSkyBlue
+'生命周期线边框颜色
+LifeLineBorderColor blue
+'生命周期线背景颜色
+LifeLineBackgroundColor #A9DCDF
+'参与者框线颜色
+ParticipantBorderColor DeepSkyBlue
+'参与者框背景颜色
+'ParticipantBackgroundColor DodgerBlue
+'字体加粗
+'ParticipantFontName Impact
+'参与者字体大小
+ParticipantFontSize 16
+'参与者字体颜色
+'ParticipantFontColor #A9DCDF
+}
+
+'标题
+title 全流程demo
+
+'让响应信息显示在箭头下面
+skinparam responseMessageBelowArrow true
+
+actor "用户" as 用户
+'participant "MQ1" as MQ1
+participant app as app
+participant 中间层 as 中间层
+participant "服务a(xxx)" as 服务a
+
+== 链路1 ==
+
+用户 -> app: 开始
+
+note right of app:我是注释
+
+app -[#yellow]> 服务a: 请求
+
+activate 服务a
+
+服务a -[#red]> 服务d: 请求
+
+activate 服务d
+
+服务d -[#red]> 服务a: 返回类型
+
+deactivate 服务d
+
+服务a -> 服务c: 预判（参数：类型）
+group 预判流程 [预判]
+服务c -> 服务b: 请求
+服务c <- 服务b: 返回
+end
+
+
+group 判断 [未记录]
+服务b -> DB: 写入
+DB -> 服务b:返回
+else 已经记录
+服务b -> 服务b: return
+end
+
+服务a <- 服务c:
+
+服务a --> MQ1: 发送MQ
+服务a <-- MQ1:
+
+deactivate 服务a
+
+group 消费MQ1 [缓存请求信息数据]
+MQ1 --> 服务b: 消费
+MQ1 <-- 服务b:
+end
+
+group 兜底处理 [处置]
+MQ2 --> 服务b: 消费
+
+group#Gold  流程 [参见下面流程]
+服务b -> 服务b: 调用服务c
+end
+
+group#Pink 流程 [参见下面流程]
+服务b -> 服务b:
+end
+
+MQ2 <-- 服务b:
+end
+
+app <- 服务a: 返回样式
+
+
+
+||50||
+autonumber
+== 分割线2 ==
+
+用户 -> app: 请求
+app -> 中间层: 请求
+中间层 -> 服务a: 请求
+服务a -> 服务c: 获取结果 \n xxx
+服务a <- 服务c: 返回
+
+服务a --> MQ3: 发送
+服务a <-- MQ3:
+
+@enduml

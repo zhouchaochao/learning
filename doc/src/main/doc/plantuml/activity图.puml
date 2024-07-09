@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+'!theme aws-orange
+
+title 活动图demo
+start
+:查询;
+:创建;
+while (遍历)
+:查询对应;
+:判断;
+if (是否有结果) then (无)
+    :执行;
+    if (结果) then (命中)
+        if (是否需要控制) then (需要)
+            :计数查询维护;
+            if (计数是否小于阈值) then (满足)
+                :匹配;
+            else (不满足)
+                :不匹配;
+            endif
+        else (不需要)
+        endif
+    else (未命中)
+    endif
+    #pink:缓存结果;
+else (有)
+     #pink:使用缓存结果;
+endif
+:如果命中，执行;
+endwhile
+stop
+@enduml

@@ -1,0 +1,36 @@
+@startmindmap
+'https://plantuml.com/mindmap-diagram
+
+caption 分享
+title Plantuml分享内容
+
+'!theme aws-orange
+
+* <&flag>plantuml
+** <&globe>是什么
+*** 代码绘图工具;\n图形绘制语言;\n开源项目2009-2023;
+*** 特点&优势对比
+** <&star>有什么
+*** <&graph>图类型
+**** 序列图
+**** 活动图
+**** 甘特图
+**** 思维导图
+*** 样式主题
+** <&pulse>怎么用
+*** 插件
+**** 安装
+**** 支持的ide
+*** jar包
+*** 在线web服务
+** <&people>举例演示
+*** 序列图编辑
+*** 样式主题切换
+
+header
+IBT 分享
+endheader
+
+center footer IBG.2023
+
+@endmindmap

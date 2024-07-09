@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+'自动编序号
+autonumber
+
+'!theme aws-orange
+'!theme mars
+'!theme minty
+'!theme sketchy
+'!theme silver
+'!theme bluegray
+
+
+'标题
+title 时序图主题demo
+
+'让响应信息显示在箭头下面
+skinparam responseMessageBelowArrow true
+
+participant "到达" as MQ
+database 特征 as 特征 order 1
+participant 服务c as 服务c order 2
+
+MQ --> 服务g: 消费MQ \t\t\t\t
+activate 服务g
+服务g -> 服务g: xx
+||20||
+服务g -> 服务n: xx \t\t
+
+group 补全 [匹配]
+服务n -> 服务d: x
+activate 服务n
+服务d -> 服务n:
+服务n -> 服务n: x
+服务n -> 服务n: x
+服务n -> 服务t: x
+服务n <- 服务t:
+deactivate 服务n
+end
+
+服务n -> 服务g: x
+||20||
+
+服务g -> 服务c: x
+服务c -> 服务g:
+||20||
+
+服务g [#pink]--> 服务t: 发送MQ \t\t\t
+服务g <--[#pink] 服务t:
+
+服务g --> MQ:
+
+deactivate 服务g
+
+@enduml

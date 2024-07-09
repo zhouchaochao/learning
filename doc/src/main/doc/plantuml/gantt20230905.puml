@@ -1,0 +1,20 @@
+@startgantt
+'https://plantuml.com/gantt-diagram
+
+'排除掉周末
+saturday are closed
+sunday are closed
+
+title 项目排期
+
+[开发] lasts 12 days
+[联调] lasts 3 days
+[测试] lasts 10 days
+
+Project starts 2023-08-30
+[开发] starts 2023-09-01
+[联调] starts 2023-09-11
+[联调] is colored in Yellow
+[测试] starts 2023-09-13
+
+@endgantt

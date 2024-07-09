@@ -1,0 +1,38 @@
+@startmindmap
+'https://plantuml.com/mindmap-diagram
+
+caption 分享
+title elvish故障内容
+
+'!theme aws-orange
+
+* <&flag>plantuml
+** <&globe>概述
+*** 代码绘图工具;\n图形绘制语言;\n开源项目2009-2023;
+*** 特点&优势对比
+** <&star>发现
+*** <&graph>报警
+**** 序列图
+**** 活动图
+**** 甘特图
+**** 思维导图
+*** 现象1：老年代内存无法释放
+** <&pulse>分析定位
+*** 现象1：老年代内存无法释放
+**** 安装
+**** 支持的ide
+*** jar包
+*** jmap+mat分析
+** <&people>修复问题
+*** 序列图编辑
+*** 样式主题切换
+** <&people>总结
+*** 序列图编辑
+*** 样式主题切换
+header
+IBT 分享
+endheader
+
+center footer IBG.2023
+
+@endmindmap

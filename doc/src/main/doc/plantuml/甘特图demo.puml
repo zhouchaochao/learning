@@ -1,0 +1,32 @@
+@startgantt
+saturday are closed
+sunday are closed
+
+
+Project starts the 1st of September 2023
+[老的] lasts 4 days
+[老的] starts 2023-09-25
+[全链路联调] lasts 7 days
+[全链路联调] starts 2023-10-07
+[业务测试] lasts 11 days
+[业务测试] starts 2023-10-16
+[业务测试] starts 3 days after [全链路联调]'s end
+-- separator --
+
+[技术评审] lasts 1 days
+[技术评审] starts 2023-09-06
+[技术评审] as [TASK1] is colored in Lavender/LightBlue
+[补充] lasts 4 days
+[补充] starts 2023-09-07
+[服务改造] lasts 12 days
+[服务改造] starts 2023-09-13
+[算法改造] lasts 4 days
+[算法改造] starts 2023-09-25
+[服务QA测试] lasts 7 days
+[服务QA测试] starts 2023-10-07
+
+
+2023-09-29 to 2023-10-06 are named [国庆假期]
+2023-09-29 to 2023-10-06 are closed
+2023-10-07 to 2023-10-08 are open
+@endgantt
