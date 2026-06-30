@@ -34,11 +34,12 @@ ParticipantFontSize 16
 'ParticipantFontColor #A9DCDF
 }
 
-'标题
-title 全流程demo
-
 '让响应信息显示在箭头下面
 skinparam responseMessageBelowArrow true
+
+
+'标题
+title 全流程demo
 
 actor "用户" as 用户
 'participant "MQ1" as MQ1
